@@ -7,6 +7,7 @@ import { Section, SectionTitle, SectionSubtitle } from "@/components/section-wra
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Camera, Code, Users, Star, Mountain, Image as ImageIcon } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Category = "all" | "development" | "events" | "behind-the-scenes" | "personal" | "nature";
 
@@ -44,12 +45,25 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return newArray;
 };
 
+const GallerySkeleton = () => (
+  <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4">
+    <Skeleton className="min-h-[250px] w-full rounded-lg md:col-span-2" />
+    <Skeleton className="min-h-[250px] w-full rounded-lg md:row-span-2" />
+    <Skeleton className="min-h-[250px] w-full rounded-lg" />
+    <Skeleton className="min-h-[250px] w-full rounded-lg" />
+    <Skeleton className="min-h-[250px] w-full rounded-lg md:row-span-2" />
+    <Skeleton className="min-h-[250px] w-full rounded-lg md:col-span-2" />
+  </div>
+);
+
+
 export default function PhotoGallerySection() {
   const [activeTab, setActiveTab] = useState<Category>("all");
   const [randomizedPhotos, setRandomizedPhotos] = useState<typeof photos>([]);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    // Only run on the client
+    setIsClient(true);
     setRandomizedPhotos(shuffleArray(photos).slice(0, 7));
   }, []);
 
@@ -78,21 +92,27 @@ export default function PhotoGallerySection() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4 animate-in fade-in slide-in-from-bottom-8 duration-700">
-        {filteredPhotos.map((photo, index) => (
-          <div key={`${photo.alt}-${index}`} className={cn("relative min-h-[250px] w-full overflow-hidden rounded-lg shadow-lg group", photo.className)}>
-            <Image
-              src={photo.src}
-              alt={photo.alt}
-              fill
-              className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-              data-ai-hint={photo.hint}
-            />
-            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-              <p className="text-white text-sm font-medium">{photo.alt}</p>
-            </div>
+      <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
+        {!isClient ? (
+          <GallerySkeleton />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4">
+            {filteredPhotos.map((photo, index) => (
+              <div key={`${photo.alt}-${index}`} className={cn("relative min-h-[250px] w-full overflow-hidden rounded-lg shadow-lg group", photo.className)}>
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                  data-ai-hint={photo.hint}
+                />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                  <p className="text-white text-sm font-medium">{photo.alt}</p>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
     </Section>
   );
