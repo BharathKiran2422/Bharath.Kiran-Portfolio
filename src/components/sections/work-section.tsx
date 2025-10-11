@@ -6,6 +6,14 @@ import { Badge } from "@/components/ui/badge";
 
 const projects = [
   {
+    title: "Yoloo! - Fashion Made Easy",
+    description: "A fast-fashion e-commerce platform offering bold streetwear to ethnic elegance, with 30–120 minute delivery, curated collections, and smart style recommendations.",
+    image: "/yoloo!.png",
+    tags: ["React Native", "Node.js", "PostgreSQL", "Firebase"],
+    hint: "Yoloo!",
+    link: "https://www.yoloo.co.in"
+  },
+  {
     title: "RideTogether - AI Ride-Sharing",
     description: "A community-based carpooling platform with AI-powered ride matching, wallet integration, and carbon footprint tracking.",
     image: "https://placehold.co/600x400.png",
@@ -40,26 +48,30 @@ export default function WorkSection() {
               data-ai-hint={project.hint}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-             <div className="absolute inset-x-0 bottom-0 p-6 transition-all duration-300 ease-in-out flex flex-col items-start translate-y-[calc(100%-88px)] group-hover:translate-y-0">
-                <h3 className="font-headline text-2xl font-bold text-white">
-                    {project.title}
-                </h3>
-                <Link href="#" className="block mt-4 bg-primary/90 text-primary-foreground p-4 rounded-lg transition-colors hover:bg-primary w-full opacity-0 group-hover:opacity-100">
-                    <div className="flex justify-between items-center">
-                        <div className="max-w-[85%]">
-                            <h4 className="font-semibold text-lg">{project.title}</h4>
-                            <p className="text-sm text-primary-foreground/80 mt-1">{project.description}</p>
-                             <div className="flex flex-wrap gap-2 mt-2">
-                                {project.tags.map((tag) => (
-                                <Badge key={tag} variant="secondary" className="text-xs font-medium">{tag}</Badge>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="flex-shrink-0">
-                             <ArrowUpRight className="h-6 w-6 transition-transform duration-500 group-hover:rotate-[360deg]" />
-                        </div>
+            <div className="absolute inset-x-0 bottom-0 p-6 transition-all duration-300 ease-in-out flex flex-col items-start translate-y-[calc(100%-88px)] group-hover:translate-y-0">
+              <h3 className="font-headline text-2xl font-bold text-white">
+                {project.title}
+              </h3>
+              <Link 
+                href={project.link ? project.link : "#"} 
+                target={project.link ? "_blank" : "_self"}
+                className="block mt-4 bg-primary/90 text-primary-foreground p-4 rounded-lg transition-colors hover:bg-primary w-full opacity-0 group-hover:opacity-100"
+              >
+                <div className="flex justify-between items-center">
+                  <div className="max-w-[85%]">
+                    <h4 className="font-semibold text-lg">{project.title}</h4>
+                    <p className="text-sm text-primary-foreground/80 mt-1">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {project.tags.map((tag) => (
+                        <Badge key={tag} variant="secondary" className="text-xs font-medium">{tag}</Badge>
+                      ))}
                     </div>
-                </Link>
+                  </div>
+                  <div className="flex-shrink-0">
+                    <ArrowUpRight className="h-6 w-6 transition-transform duration-500 group-hover:rotate-[360deg]" />
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         ))}

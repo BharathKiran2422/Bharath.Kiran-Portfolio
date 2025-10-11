@@ -33,7 +33,7 @@ export default function AboutSection() {
         <div className="group relative mx-auto w-full max-w-md">
           <div className="relative rounded-2xl bg-gradient-to-br from-primary/50 to-primary/30 p-1 transition-all duration-300 group-hover:from-primary/70 group-hover:to-primary/50 rotate-[-2deg] group-hover:rotate-0">
              <Image
-              src="https://placehold.co/600x700.png"
+              src="/about.pic.png"
               alt="About Bharath"
               width={600}
               height={700}

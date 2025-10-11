@@ -65,7 +65,7 @@ export default function HeroSection() {
                 <div className="relative h-80 w-80 sm:h-96 sm:w-96 lg:h-[450px] lg:w-[450px] group">
                     <div className="absolute inset-0.5 bg-gradient-to-r from-primary/80 to-accent/80 rounded-full blur-2xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
                 <Image
-                    src="https://placehold.co/600x600.png"
+                    src="/profile.pic.png"
                     alt="Bharath's Profile Picture"
                     width={600}
                     height={600}
