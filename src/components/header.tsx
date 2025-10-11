@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -61,7 +62,7 @@ export default function Header() {
           <span>Bharath Kiran</span>
         </Link>
 
-        {!isMobile && <NavLinksComponent />}
+        {isMobile === false && <NavLinksComponent />}
         
         <div className="flex items-center gap-2">
           <ThemeToggle />
@@ -96,3 +97,5 @@ export default function Header() {
     </header>
   )
 }
+
+    

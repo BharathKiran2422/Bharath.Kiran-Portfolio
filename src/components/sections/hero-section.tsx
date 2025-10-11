@@ -29,8 +29,15 @@ export default function HeroSection() {
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(150);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
     const handleTyping = () => {
       const currentRole = roles[roleIndex];
       const updatedText = isDeleting
@@ -54,7 +61,7 @@ export default function HeroSection() {
 
     const typingTimeout = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(typingTimeout);
-  }, [text, isDeleting, roleIndex, typingSpeed]);
+  }, [text, isDeleting, roleIndex, typingSpeed, isClient]);
 
   return (
     <section id="home" className="relative overflow-hidden pt-12 pb-20 md:pt-16 md:pb-24 bg-background">
@@ -78,8 +85,8 @@ export default function HeroSection() {
             <div className="max-w-xl animate-in fade-in slide-in-from-left-8 duration-1000 order-2 lg:order-1 text-center lg:text-left mx-auto lg:mx-0">
                 <h1 className="font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">Hi, I'm <span className="text-primary">Bharath Kiran</span></h1>
                 <p className="mt-2 font-headline text-2xl font-medium">
-                I'm a <span className="text-primary">{text}</span>
-                <span className="animate-ping">|</span>
+                I'm a <span className="text-primary">{isClient ? text : roles[0]}</span>
+                {isClient && <span className="animate-ping">|</span>}
                 </p>
                 <p className="mt-6 text-lg leading-8 text-muted-foreground">
                 I specialize in creating intuitive, beautiful, and user-friendly digital experiences. From concept to deployment, I bring ideas to life with clean code and thoughtful design using technologies like React, Node.js, and Firebase.
@@ -169,3 +176,5 @@ export default function HeroSection() {
     </section>
   );
 }
+
+    
