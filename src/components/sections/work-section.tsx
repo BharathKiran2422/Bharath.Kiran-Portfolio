@@ -9,7 +9,7 @@ const projects = [
     title: "Yoloo! - Fashion Made Easy",
     description: "A fast-fashion e-commerce platform offering bold streetwear to ethnic elegance, with 30–120 minute delivery, curated collections, and smart style recommendations.",
     image: "/yoloo!.png",
-    tags: ["React Native", "Node.js", "PostgreSQL", "Firebase"],
+    tags: ["React Native", "Node.js", "Firebase"],
     hint: "Yoloo!",
     link: "https://www.yoloo.co.in"
   },
