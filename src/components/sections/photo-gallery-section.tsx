@@ -92,7 +92,7 @@ export default function PhotoGallerySection() {
         ))}
       </div>
 
-      <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
+      <div className="animate-in fade-in slide-in-from-bottom-8 duration-700 min-h-[500px]">
         {!isClient ? (
           <GallerySkeleton />
         ) : (

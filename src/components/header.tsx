@@ -48,6 +48,12 @@ export default function Header() {
       ))}
     </nav>
   )
+  
+  const [isClient, setIsClient] = React.useState(false)
+  React.useEffect(() => {
+    setIsClient(true)
+  }, [])
+
 
   return (
     <header
@@ -62,11 +68,11 @@ export default function Header() {
           <span>Bharath Kiran</span>
         </Link>
 
-        {isMobile === false && <NavLinksComponent />}
+        {isClient && !isMobile && <NavLinksComponent />}
         
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          {isMobile && (
+          {isClient && isMobile && (
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon">
@@ -97,5 +103,3 @@ export default function Header() {
     </header>
   )
 }
-
-    
