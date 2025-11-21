@@ -266,7 +266,7 @@ export default function ResumeSection() {
       <div className="flex justify-center items-center gap-4">
         <SectionTitle>My Resume</SectionTitle>
         <Button variant="outline" size="icon" asChild>
-          <Link href="/resume.pdf" download="Bharath_Kiran_Resume.pdf" aria-label="Download Resume">
+          <Link href="/Bharath_Kiran.pdf" download="Bharath_Kiran_Resume.pdf" aria-label="Download Resume">
             <Download className="h-5 w-5" />
           </Link>
         </Button>
