@@ -59,23 +59,17 @@ const GallerySkeleton = () => (
 
 export default function PhotoGallerySection() {
   const [activeTab, setActiveTab] = useState<Category>("all");
-  const [displayPhotos, setDisplayPhotos] = useState<typeof photos>([]);
+  const [randomizedPhotos, setRandomizedPhotos] = useState<typeof photos>([]);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
+    setRandomizedPhotos(shuffleArray(photos).slice(0, 7));
   }, []);
 
-  useEffect(() => {
-    if (isClient) {
-      if (activeTab === "all") {
-        setDisplayPhotos(shuffleArray(photos).slice(0, 7));
-      } else {
-        setDisplayPhotos(photos.filter(p => p.category === activeTab));
-      }
-    }
-  }, [activeTab, isClient]);
-
+  const filteredPhotos = activeTab === "all"
+    ? randomizedPhotos
+    : photos.filter(p => p.category === activeTab);
 
   return (
     <Section id="gallery" className="bg-card">
@@ -103,8 +97,8 @@ export default function PhotoGallerySection() {
           <GallerySkeleton />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4">
-            {displayPhotos.map((photo, index) => (
-              <div key={`${photo.src}-${photo.alt}-${index}`} className={cn("relative min-h-[250px] w-full overflow-hidden rounded-lg shadow-lg group", photo.className)}>
+            {filteredPhotos.map((photo, index) => (
+              <div key={`${photo.alt}-${index}`} className={cn("relative min-h-[250px] w-full overflow-hidden rounded-lg shadow-lg group", photo.className)}>
                 <Image
                   src={photo.src}
                   alt={photo.alt}
