@@ -23,8 +23,10 @@ const navLinks = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+  const [isClient, setIsClient] = React.useState(false)
 
   React.useEffect(() => {
+    setIsClient(true)
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10)
     }
@@ -66,36 +68,36 @@ export default function Header() {
         
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <div className="md:hidden">
-            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-              <SheetTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <Menu className="h-6 w-6" />
-                  <span className="sr-only">Toggle navigation menu</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right">
-                <SheetHeader>
-                  <SheetTitle>
-                    <Link href="/" className="flex items-center gap-2 font-headline text-xl font-bold">
-                      <Mountain className="h-8 w-8 icon-gradient-primary" />
-                      <span>Bharath Kiran</span>
-                    </Link>
-                  </SheetTitle>
-                  <SheetDescription>
-                    Navigation menu
-                  </SheetDescription>
-                </SheetHeader>
-                <div className="flex flex-col gap-8 pt-12">
-                  <NavLinksComponent className="flex-col items-start gap-4" />
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
+          {isClient && (
+            <div className="md:hidden">
+              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="icon">
+                    <Menu className="h-6 w-6" />
+                    <span className="sr-only">Toggle navigation menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right">
+                  <SheetHeader>
+                    <SheetTitle>
+                      <Link href="/" className="flex items-center gap-2 font-headline text-xl font-bold">
+                        <Mountain className="h-8 w-8 icon-gradient-primary" />
+                        <span>Bharath Kiran</span>
+                      </Link>
+                    </SheetTitle>
+                    <SheetDescription>
+                      Navigation menu
+                    </SheetDescription>
+                  </SheetHeader>
+                  <div className="flex flex-col gap-8 pt-12">
+                    <NavLinksComponent className="flex-col items-start gap-4" />
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
+          )}
         </div>
       </div>
     </header>
   )
 }
-
-    
