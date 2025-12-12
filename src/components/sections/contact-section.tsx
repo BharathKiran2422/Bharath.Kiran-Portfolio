@@ -85,7 +85,7 @@ export default function ContactSection() {
               <CardTitle>Send me a message</CardTitle>
             </CardHeader>
             <CardContent>
-              <form ref={formRef} action={formAction} className="space-y-4">
+              <form ref={formRef} action={formAction} className="space-y-4" suppressHydrationWarning>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
                     <Input id="name" name="name" placeholder="Your Name" required aria-label="Your Name" />

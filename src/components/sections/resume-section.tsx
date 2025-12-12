@@ -272,7 +272,7 @@ export default function ResumeSection() {
       <SectionSubtitle>
          Check out my qualifications and professional journey.
       </SectionSubtitle>
-       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 my-12 max-w-4xl mx-auto">
+       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 my-12 max-w-4xl mx-auto" suppressHydrationWarning>
         {(Object.keys(sections) as SectionKey[]).map((tab) => (
           <Button
             key={tab}

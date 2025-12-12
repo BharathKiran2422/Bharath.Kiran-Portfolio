@@ -63,7 +63,7 @@ export default function Header() {
           <NavLinksComponent />
         </div>
         
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2" suppressHydrationWarning>
           <ThemeToggle />
           <div className="md:hidden">
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
