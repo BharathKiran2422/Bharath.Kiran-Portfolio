@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/section-wrapper";
 import Link from "next/link";

@@ -1,4 +1,3 @@
-
 "use client"
 
 import * as React from "react"
@@ -9,7 +8,6 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { useIsMobile } from "@/hooks/use-mobile"
 
 const navLinks = [
   { href: "#home", label: "Home" },
@@ -24,7 +22,6 @@ const navLinks = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
-  const isMobile = useIsMobile()
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -48,12 +45,6 @@ export default function Header() {
       ))}
     </nav>
   )
-  
-  const [isClient, setIsClient] = React.useState(false)
-  React.useEffect(() => {
-    setIsClient(true)
-  }, [])
-
 
   return (
     <header
@@ -68,11 +59,13 @@ export default function Header() {
           <span>Bharath Kiran</span>
         </Link>
 
-        {isClient && !isMobile && <NavLinksComponent />}
+        <div className="hidden md:flex">
+          <NavLinksComponent />
+        </div>
         
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          {isClient && isMobile && (
+          <div className="md:hidden">
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon">
@@ -97,7 +90,7 @@ export default function Header() {
                 </div>
               </SheetContent>
             </Sheet>
-          )}
+          </div>
         </div>
       </div>
     </header>
