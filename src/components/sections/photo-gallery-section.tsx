@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/section-wrapper";
 import { Button } from "@/components/ui/button";
@@ -38,49 +38,34 @@ const tabs: { key: Category; label: string; icon: React.ReactNode }[] = [
 
 const INITIAL_LIMIT = 6;
 
-export default function PhotoGallerySection() {
-  const [activeTab, setActiveTab] = useState<Category>("all");
+const GalleryGrid = ({ photos, category }: { photos: typeof photos, category: Category }) => {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
+  const filteredPhotos = category === 'all' ? photos : photos.filter(p => p.category === category);
 
-  const filteredPhotos = activeTab === "all"
-    ? photos
-    : photos.filter(p => p.category === activeTab);
+  if (filteredPhotos.length === 0) return null;
 
   const displayedPhotos = isExpanded ? filteredPhotos : filteredPhotos.slice(0, INITIAL_LIMIT);
 
-  const handleTabChange = (tab: Category) => {
-    setActiveTab(tab);
-    setIsExpanded(false);
+  const handleToggle = () => {
+    if (isExpanded && sectionRef.current) {
+        const gallerySection = document.getElementById('gallery');
+        if (gallerySection) {
+            gallerySection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+    setIsExpanded(!isExpanded);
   }
 
   return (
-    <Section id="gallery" className="bg-card" suppressHydrationWarning>
-      <SectionTitle>Photo Gallery</SectionTitle>
-      <SectionSubtitle>
-        A collection of moments from my professional and personal life.
-      </SectionSubtitle>
-      
-      <div className="flex flex-wrap justify-center gap-4 my-12">
-        {tabs.map((tab) => (
-          <Button
-            key={tab.key}
-            onClick={() => handleTabChange(tab.key)}
-            variant={activeTab === tab.key ? "default" : "outline"}
-            className={cn("w-full sm:w-auto justify-center", activeTab !== tab.key && "bg-muted/50 dark:bg-card hover:bg-muted dark:hover:bg-muted/50")}
-          >
-            {tab.icon}
-            {tab.label}
-          </Button>
-        ))}
-      </div>
-
+    <div ref={sectionRef}>
       <motion.div 
         layout
-        className="min-h-[500px]"
+        className="min-h-[250px]"
       >
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeTab}
+            key={category}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -115,7 +100,7 @@ export default function PhotoGallerySection() {
       {filteredPhotos.length > INITIAL_LIMIT && (
         <div className="mt-8 text-center">
           <motion.button
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={handleToggle}
             className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-background px-8 py-3 font-medium text-foreground shadow-lg transition-all duration-300 hover:shadow-primary/30"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -132,6 +117,35 @@ export default function PhotoGallerySection() {
           </motion.button>
         </div>
       )}
+    </div>
+  )
+}
+
+export default function PhotoGallerySection() {
+  const [activeTab, setActiveTab] = useState<Category>("all");
+
+  return (
+    <Section id="gallery" className="bg-card" suppressHydrationWarning>
+      <SectionTitle>Photo Gallery</SectionTitle>
+      <SectionSubtitle>
+        A collection of moments from my professional and personal life.
+      </SectionSubtitle>
+      
+      <div className="flex flex-wrap justify-center gap-4 my-12">
+        {tabs.map((tab) => (
+          <Button
+            key={tab.key}
+            onClick={() => setActiveTab(tab.key)}
+            variant={activeTab === tab.key ? "default" : "outline"}
+            className={cn("w-full sm:w-auto justify-center", activeTab !== tab.key && "bg-muted/50 dark:bg-card hover:bg-muted dark:hover:bg-muted/50")}
+          >
+            {tab.icon}
+            {tab.label}
+          </Button>
+        ))}
+      </div>
+      
+      <GalleryGrid photos={photos} category={activeTab} />
     </Section>
   );
 }
