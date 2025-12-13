@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useRef } from "react";
@@ -13,7 +14,15 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 type Category = "all" | "development" | "events" | "behind-the-scenes" | "personal" | "nature";
 
-const photos = [
+type Photo = {
+  src: string;
+  alt: string;
+  category: Category | string;
+  hint: string;
+  className?: string;
+};
+
+const photos: Photo[] = [
   { src: "https://placehold.co/800x600.png", alt: "Development Screenshot 1", category: "development", hint: "dashboard analytics", className: "md:col-span-2" },
   { src: "https://placehold.co/600x800.png", alt: "College Workshop", category: "events", hint: "workshop presentation", className: "md:row-span-2" },
   { src: "https://placehold.co/600x400.png", alt: "Team Collaboration", category: "behind-the-scenes", hint: "team meeting" },
@@ -40,7 +49,7 @@ const tabs: { key: Category; label: string; icon: React.ReactNode }[] = [
 const INITIAL_DESKTOP_LIMIT = 6;
 const INITIAL_MOBILE_LIMIT = 2;
 
-const GalleryGrid = ({ photos, category }: { photos: typeof photos, category: Category }) => {
+const GalleryGrid = ({ photos, category }: { photos: Photo[], category: Category }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const isMobile = useIsMobile();
@@ -77,7 +86,7 @@ const GalleryGrid = ({ photos, category }: { photos: typeof photos, category: Ca
             transition={{ duration: 0.3 }}
             className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4"
           >
-            {displayedPhotos.map((photo, index) => (
+            {displayedPhotos.map((photo, index: number) => (
               <motion.div
                 layout
                 key={`${photo.alt}-${index}`}
@@ -130,13 +139,13 @@ export default function PhotoGallerySection() {
   const [activeTab, setActiveTab] = useState<Category>("all");
 
   return (
-    <Section id="gallery" className="bg-card" suppressHydrationWarning>
+    <Section id="gallery" className="bg-card">
       <SectionTitle>Photo Gallery</SectionTitle>
       <SectionSubtitle>
         A collection of moments from my professional and personal life.
       </SectionSubtitle>
       
-      <div className="my-12 grid grid-cols-2 justify-center gap-4 md:flex md:flex-nowrap" suppressHydrationWarning>
+      <div className="my-12 grid grid-cols-2 justify-center gap-4 md:flex md:flex-nowrap">
         {tabs.map((tab) => (
           <Button
             key={tab.key}
@@ -154,3 +163,4 @@ export default function PhotoGallerySection() {
     </Section>
   );
 }
+
