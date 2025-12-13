@@ -136,13 +136,13 @@ export default function PhotoGallerySection() {
         A collection of moments from my professional and personal life.
       </SectionSubtitle>
       
-      <div className="flex flex-wrap justify-center gap-4 my-12">
+      <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-4 my-12">
         {tabs.map((tab) => (
           <Button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
             variant={activeTab === tab.key ? "default" : "outline"}
-            className={cn("w-full sm:w-auto justify-center", activeTab !== tab.key && "bg-muted/50 dark:bg-card hover:bg-muted dark:hover:bg-muted/50")}
+            className={cn("w-full justify-center", activeTab !== tab.key && "bg-muted/50 dark:bg-card hover:bg-muted dark:hover:bg-muted/50")}
           >
             {tab.icon}
             {tab.label}
