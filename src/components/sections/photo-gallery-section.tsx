@@ -136,7 +136,7 @@ export default function PhotoGallerySection() {
         A collection of moments from my professional and personal life.
       </SectionSubtitle>
       
-      <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-4 my-12">
+      <div className="my-12 grid grid-cols-2 justify-center gap-4 sm:flex sm:flex-wrap" suppressHydrationWarning>
         {tabs.map((tab) => (
           <Button
             key={tab.key}
