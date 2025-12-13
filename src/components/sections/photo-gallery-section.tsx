@@ -39,16 +39,28 @@ const tabs: { key: Category; label: string; icon: React.ReactNode }[] = [
 const INITIAL_LIMIT = 6;
 
 const GalleryGrid = ({ photos, category }: { photos: typeof photos, category: Category }) => {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const filteredPhotos = category === 'all' ? photos : photos.filter(p => p.category === category);
 
-  if (filteredPhotos.length === 0) return null;
+  if (filteredPhotos.length === 0) {
+    return (
+        <motion.div
+            key={category}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="text-center text-muted-foreground py-8"
+        >
+            No photos in this category yet.
+        </motion.div>
+    );
+  }
 
   const displayedPhotos = isExpanded ? filteredPhotos : filteredPhotos.slice(0, INITIAL_LIMIT);
 
   const handleToggle = () => {
-    if (isExpanded && sectionRef.current) {
+    if (isExpanded) {
         const gallerySection = document.getElementById('gallery');
         if (gallerySection) {
             gallerySection.scrollIntoView({ behavior: 'smooth' });
@@ -58,7 +70,7 @@ const GalleryGrid = ({ photos, category }: { photos: typeof photos, category: Ca
   }
 
   return (
-    <div ref={sectionRef}>
+    <div>
       <motion.div 
         layout
         className="min-h-[250px]"
@@ -75,7 +87,7 @@ const GalleryGrid = ({ photos, category }: { photos: typeof photos, category: Ca
             {displayedPhotos.map((photo, index) => (
               <motion.div
                 layout
-                key={`${photo.alt}-${index}`}
+                key={`${photo.src}-${index}`}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
