@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { Camera, Code, Users, Star, Mountain, Image as ImageIcon } from "lucide-react";
 import { IoIosArrowDown } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 
 type Category = "all" | "development" | "events" | "behind-the-scenes" | "personal" | "nature";
@@ -36,28 +37,20 @@ const tabs: { key: Category; label: string; icon: React.ReactNode }[] = [
   { key: "nature", label: "Nature", icon: <Mountain className="mr-2 h-4 w-4" /> },
 ];
 
-const INITIAL_LIMIT = 6;
+const INITIAL_DESKTOP_LIMIT = 6;
+const INITIAL_MOBILE_LIMIT = 2;
 
 const GalleryGrid = ({ photos, category }: { photos: typeof photos, category: Category }) => {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
+  const isMobile = useIsMobile();
   const filteredPhotos = category === 'all' ? photos : photos.filter(p => p.category === category);
 
-  if (filteredPhotos.length === 0) {
-    return (
-        <motion.div
-            key={category}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="text-center text-muted-foreground py-8"
-        >
-            No photos in this category yet.
-        </motion.div>
-    );
-  }
+  const initialLimit = isMobile ? INITIAL_MOBILE_LIMIT : INITIAL_DESKTOP_LIMIT;
 
-  const displayedPhotos = isExpanded ? filteredPhotos : filteredPhotos.slice(0, INITIAL_LIMIT);
+  if (filteredPhotos.length === 0) return null;
+
+  const displayedPhotos = isExpanded ? filteredPhotos : filteredPhotos.slice(0, initialLimit);
 
   const handleToggle = () => {
     if (isExpanded) {
@@ -70,7 +63,7 @@ const GalleryGrid = ({ photos, category }: { photos: typeof photos, category: Ca
   }
 
   return (
-    <div>
+    <div ref={sectionRef}>
       <motion.div 
         layout
         className="min-h-[250px]"
@@ -87,7 +80,7 @@ const GalleryGrid = ({ photos, category }: { photos: typeof photos, category: Ca
             {displayedPhotos.map((photo, index) => (
               <motion.div
                 layout
-                key={`${photo.src}-${index}`}
+                key={`${photo.alt}-${index}`}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
@@ -109,7 +102,7 @@ const GalleryGrid = ({ photos, category }: { photos: typeof photos, category: Ca
         </AnimatePresence>
       </motion.div>
 
-      {filteredPhotos.length > INITIAL_LIMIT && (
+      {filteredPhotos.length > initialLimit && (
         <div className="mt-8 text-center">
           <motion.button
             onClick={handleToggle}
