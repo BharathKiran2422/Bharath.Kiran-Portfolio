@@ -6,6 +6,9 @@ import { Section, SectionTitle, SectionSubtitle } from "@/components/section-wra
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Camera, Code, Users, Star, Mountain, Image as ImageIcon } from "lucide-react";
+import { IoIosArrowDown } from "react-icons/io";
+import { AnimatePresence, motion } from "framer-motion";
+
 
 type Category = "all" | "development" | "events" | "behind-the-scenes" | "personal" | "nature";
 
@@ -33,25 +36,35 @@ const tabs: { key: Category; label: string; icon: React.ReactNode }[] = [
   { key: "nature", label: "Nature", icon: <Mountain className="mr-2 h-4 w-4" /> },
 ];
 
+const INITIAL_LIMIT = 6;
+
 export default function PhotoGallerySection() {
   const [activeTab, setActiveTab] = useState<Category>("all");
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const filteredPhotos = activeTab === "all"
     ? photos
     : photos.filter(p => p.category === activeTab);
 
+  const displayedPhotos = isExpanded ? filteredPhotos : filteredPhotos.slice(0, INITIAL_LIMIT);
+
+  const handleTabChange = (tab: Category) => {
+    setActiveTab(tab);
+    setIsExpanded(false);
+  }
+
   return (
-    <Section id="gallery" className="bg-card">
+    <Section id="gallery" className="bg-card" suppressHydrationWarning>
       <SectionTitle>Photo Gallery</SectionTitle>
       <SectionSubtitle>
         A collection of moments from my professional and personal life.
       </SectionSubtitle>
       
-      <div className="flex flex-wrap justify-center gap-4 my-12" suppressHydrationWarning>
+      <div className="flex flex-wrap justify-center gap-4 my-12">
         {tabs.map((tab) => (
           <Button
             key={tab.key}
-            onClick={() => setActiveTab(tab.key)}
+            onClick={() => handleTabChange(tab.key)}
             variant={activeTab === tab.key ? "default" : "outline"}
             className={cn("w-full sm:w-auto justify-center", activeTab !== tab.key && "bg-muted/50 dark:bg-card hover:bg-muted dark:hover:bg-muted/50")}
           >
@@ -61,24 +74,64 @@ export default function PhotoGallerySection() {
         ))}
       </div>
 
-      <div className="animate-in fade-in slide-in-from-bottom-8 duration-700 min-h-[500px]">
-        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4">
-          {filteredPhotos.map((photo, index) => (
-            <div key={`${photo.alt}-${index}`} className={cn("relative min-h-[250px] w-full overflow-hidden rounded-lg shadow-lg group", photo.className)}>
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                fill
-                className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-                data-ai-hint={photo.hint}
-              />
-              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <p className="text-white text-sm font-medium">{photo.alt}</p>
-              </div>
-            </div>
-          ))}
+      <motion.div 
+        layout
+        className="min-h-[500px]"
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4"
+          >
+            {displayedPhotos.map((photo, index) => (
+              <motion.div
+                layout
+                key={`${photo.alt}-${index}`}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className={cn("relative min-h-[250px] w-full overflow-hidden rounded-lg shadow-lg group", photo.className)}
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                  data-ai-hint={photo.hint}
+                />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                  <p className="text-white text-sm font-medium">{photo.alt}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </motion.div>
+
+      {filteredPhotos.length > INITIAL_LIMIT && (
+        <div className="mt-8 text-center">
+          <motion.button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-background px-8 py-3 font-medium text-foreground shadow-lg transition-all duration-300 hover:shadow-primary/30"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <div className="absolute inset-0 w-0 bg-gradient-to-r from-primary/50 to-primary/30 transition-all duration-300 ease-out group-hover:w-full"></div>
+            <span className="relative">{isExpanded ? "View Less" : "View More"}</span>
+            <motion.div
+              animate={{ rotate: isExpanded ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              <IoIosArrowDown />
+            </motion.div>
+          </motion.button>
         </div>
-      </div>
+      )}
     </Section>
   );
 }
