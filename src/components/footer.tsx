@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { Github, Linkedin, Mountain } from 'lucide-react';
 import { SiLeetcode, SiCodechef, SiGeeksforgeeks } from "react-icons/si";
-import { FaInstagram } from "react-icons/fa";
+import { FaInstagram, FaHackerrank } from "react-icons/fa";
 
 
 export default function Footer() {
@@ -32,12 +32,15 @@ export default function Footer() {
             <Link href="https://www.codechef.com/users/bharath2422" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary" aria-label="CodeChef">
               <SiCodechef className="h-5 w-5" />
             </Link>
-            <Link href="https://www.geeksforgeeks.org/user/bharath_kiran/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary" aria-label="GeeksforGeeks">
+            <Link href="https://www.hackerrank.com/profile/bharathkiran2422" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary" aria-label="HackerRank">
+              <FaHackerrank className="h-5 w-5" />
+            </Link>
+            {/* <Link href="https://www.geeksforgeeks.org/user/bharath_kiran/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary" aria-label="GeeksforGeeks">
               <SiGeeksforgeeks className="h-5 w-5" />
-            </Link>
-             <Link href="https://www.instagram.com/bharath2422_/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary" aria-label="Instagram">
+            </Link> */}
+             {/* <Link href="https://www.instagram.com/bharath2422_/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary" aria-label="Instagram">
               <FaInstagram className="h-5 w-5" />
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

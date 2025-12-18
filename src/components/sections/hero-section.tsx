@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Send } from 'lucide-react';
 import Link from 'next/link';
 import { SiLeetcode, SiCodechef, SiGeeksforgeeks } from "react-icons/si";
-import { FaInstagram } from "react-icons/fa";
+import { FaInstagram, FaHackerrank } from "react-icons/fa";
 import {
   Tooltip,
   TooltipContent,
@@ -144,7 +144,17 @@ export default function HeroSection() {
                         <p>CodeChef</p>
                       </TooltipContent>
                     </Tooltip>
-                     <Tooltip>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Link href="https://www.hackerrank.com/profile/bharathkiran2422" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                            <FaHackerrank className="h-6 w-6" />
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>HackerRank</p>
+                      </TooltipContent>
+                    </Tooltip>
+                     {/* <Tooltip>
                       <TooltipTrigger asChild>
                         <Link href="https://www.geeksforgeeks.org/user/bharath_kiran/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
                             <SiGeeksforgeeks className="h-6 w-6" />
@@ -153,8 +163,8 @@ export default function HeroSection() {
                       <TooltipContent>
                         <p>GeeksforGeeks</p>
                       </TooltipContent>
-                    </Tooltip>
-                    <Tooltip>
+                    </Tooltip> */}
+                    {/* <Tooltip>
                       <TooltipTrigger asChild>
                         <Link href="https://www.instagram.com/bharath2422_/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
                             <FaInstagram className="h-6 w-6" />
@@ -163,7 +173,7 @@ export default function HeroSection() {
                       <TooltipContent>
                         <p>Instagram</p>
                       </TooltipContent>
-                    </Tooltip>
+                    </Tooltip> */}
                   </TooltipProvider>
                 </div>
             </div>
