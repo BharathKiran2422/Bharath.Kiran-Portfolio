@@ -3,25 +3,25 @@
 import * as React from "react"
 import Link from "next/link"
 import { Menu, Mountain } from "lucide-react"
+import { usePathname } from "next/navigation"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  /*{ href: "#about", label: "About" },*/
-  /*{ href: "#resume", label: "Resume" },*/
-  { href: "#work", label: "Work" },
-  /*{ href: "#blog", label: "Blog" },*/
-  { href: "#gallery", label: "Gallery" },
-  { href: "#contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" },
 ]
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+  const pathname = usePathname()
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +37,10 @@ export default function Header() {
         <Link
           key={link.href}
           href={link.href}
-          className="text-base font-medium transition-colors hover:text-primary"
+          className={cn(
+            "text-base font-medium transition-colors hover:text-primary",
+            pathname === link.href ? "text-primary" : "text-muted-foreground"
+          )}
           onClick={() => setMobileMenuOpen(false)}
         >
           {link.label}
@@ -49,44 +52,33 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b border-transparent transition-all",
-        isScrolled ? "border-border bg-background/80 backdrop-blur-sm" : ""
+        "sticky top-0 z-50 w-full transition-all",
+        isScrolled ? "border-b border-white/10 bg-background/50 backdrop-blur-lg" : ""
       )}
     >
       <div className="container flex h-20 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 font-headline text-xl font-bold">
-          <Mountain className="h-8 w-8 icon-gradient-primary" />
-          <span>Bharath Kiran</span>
+          <Mountain className="h-7 w-7 text-primary" />
+          <span className="text-2xl">BK</span>
         </Link>
 
         <div className="hidden md:flex">
           <NavLinksComponent />
         </div>
         
-        <div className="flex items-center gap-2" suppressHydrationWarning>
+        <div className="flex items-center gap-2">
           <ThemeToggle />
           <div className="md:hidden">
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon">
+                <Button variant="ghost" size="icon">
                   <Menu className="h-6 w-6" />
                   <span className="sr-only">Toggle navigation menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right">
-                <SheetHeader>
-                  <SheetTitle>
-                    <Link href="/" className="flex items-center gap-2 font-headline text-xl font-bold">
-                      <Mountain className="h-8 w-8 icon-gradient-primary" />
-                      <span>Bharath Kiran</span>
-                    </Link>
-                  </SheetTitle>
-                  <SheetDescription>
-                    Navigation menu
-                  </SheetDescription>
-                </SheetHeader>
-                <div className="flex flex-col gap-8 pt-12">
-                  <NavLinksComponent className="flex-col items-start gap-4" />
+              <SheetContent side="right" className="bg-background/80 backdrop-blur-lg">
+                <div className="flex flex-col items-center justify-center h-full gap-8">
+                  <NavLinksComponent className="flex-col gap-8" />
                 </div>
               </SheetContent>
             </Sheet>

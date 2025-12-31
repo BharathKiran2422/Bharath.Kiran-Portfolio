@@ -1,13 +1,13 @@
-import type {Metadata} from 'next';
+import type { Metadata } from 'next';
 import './globals.css';
-import '@/styles/target-cursor.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
-import TargetCursor from '@/components/target-cursor';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
 
 export const metadata: Metadata = {
-  title: 'Bharath Kiran',
-  description: 'A personal portfolio website for Bharath Kiran Obilisetty.',
+  title: 'Bharath Kiran | Full-Stack Developer & AI Enthusiast',
+  description: 'Building Digital Experiences That Matter',
 };
 
 export default function RootLayout({
@@ -23,15 +23,16 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased" suppressHydrationWarning>
+      <body className="font-body antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          <TargetCursor />
+          <Header />
           {children}
+          <Footer />
           <Toaster />
         </ThemeProvider>
       </body>
