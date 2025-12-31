@@ -3,7 +3,8 @@
 
 import React, { useEffect } from 'react';
 import Image from 'next/image';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+import { Dialog, DialogContent, DialogClose, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -13,7 +14,7 @@ interface LightboxProps {
   onOpenChange: (open: boolean) => void;
   images: { src: string; alt: string, caption?: string, date?: string }[];
   selectedIndex: number;
-  setSelectedIndex: (index: number) => void;
+  setSelectedIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export function Lightbox({ open, onOpenChange, images, selectedIndex, setSelectedIndex }: LightboxProps) {
@@ -44,6 +45,12 @@ export function Lightbox({ open, onOpenChange, images, selectedIndex, setSelecte
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="bg-black/80 backdrop-blur-md border-0 w-screen h-screen max-w-none p-0 flex items-center justify-center">
+        <VisuallyHidden>
+          <DialogTitle>
+              {currentImage?.caption ?? "Lightbox Image"}
+          </DialogTitle>
+        </VisuallyHidden>
+
         <AnimatePresence mode="wait">
             {currentImage && (
                 <motion.div
@@ -92,7 +99,7 @@ export function Lightbox({ open, onOpenChange, images, selectedIndex, setSelecte
           </>
         )}
         
-        <Dialog.Close asChild>
+        <DialogClose asChild>
             <Button
                 variant="ghost"
                 size="icon"
@@ -100,7 +107,7 @@ export function Lightbox({ open, onOpenChange, images, selectedIndex, setSelecte
             >
                 <X className="h-6 w-6" />
             </Button>
-        </Dialog.Close>
+        </DialogClose>
       </DialogContent>
     </Dialog>
   );

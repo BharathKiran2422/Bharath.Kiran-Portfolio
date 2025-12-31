@@ -2,11 +2,12 @@
 
 import { z } from 'zod';
 import { db } from '@/lib/firebase';
-import { collection, addDoc, getDocs, query, orderBy, serverTimestamp, Timestamp, doc, deleteDoc, updateDoc, writeBatch } from 'firebase/firestore';
+import { collection, addDoc, getDocs, query, orderBy, serverTimestamp, Timestamp, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 
 const contactSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email.' }),
+  subject: z.string().min(1, { message: 'Please select a subject.' }),
   message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
 });
 
@@ -15,6 +16,7 @@ type FormState = {
   errors?: {
     name?: string[];
     email?:string[];
+    subject?: string[];
     message?: string[];
   };
 };
@@ -26,6 +28,7 @@ export async function submitContactForm(
   const parsed = contactSchema.safeParse({
     name: formData.get('name'),
     email: formData.get('email'),
+    subject: formData.get('subject'),
     message: formData.get('message'),
   });
 
@@ -39,11 +42,11 @@ export async function submitContactForm(
   try {
     await addDoc(collection(db, 'Messages'), {
       ...parsed.data,
-      read: false, // Add read status
       createdAt: serverTimestamp(),
+      read: false,
     });
 
-    return { message: 'Your message has been saved successfully!' };
+    return { message: 'Your message has been sent successfully!' };
   } catch (e: any) {
     console.error('Failed to save message to Firestore:', e);
     const errorMessage = e.message || 'An unknown error occurred.';
@@ -64,6 +67,7 @@ export interface Message {
   id: string;
   name: string;
   email: string;
+  subject: string;
   message: string;
   createdAt: string;
   read: boolean;
@@ -81,6 +85,7 @@ export async function getMessages(): Promise<{ messages?: Message[]; error?: str
         id: doc.id,
         name: data.name,
         email: data.email,
+        subject: data.subject,
         message: data.message,
         read: data.read || false,
         createdAt: createdAtTimestamp ? createdAtTimestamp.toDate().toISOString() : new Date().toISOString(),

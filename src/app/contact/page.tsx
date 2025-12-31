@@ -1,0 +1,262 @@
+'use client';
+
+import React from 'react';
+import { useFormState, useFormStatus } from 'react-dom';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { motion } from 'framer-motion';
+import { AtSign, Linkedin, MapPin, Paperclip, Phone, Send, User, ChevronDown, HelpCircle, Briefcase, MessageSquare, Users, Code, Info } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { submitContactForm } from '@/app/actions';
+import { useToast } from '@/hooks/use-toast';
+
+const contactSchema = z.object({
+  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
+  email: z.string().email({ message: 'Please enter a valid email.' }),
+  subject: z.string().min(1, { message: 'Please select a subject.' }),
+  message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
+});
+
+type ContactFormValues = z.infer<typeof contactSchema>;
+
+const contactInfo = [
+    { icon: <AtSign />, text: "bharathkiranobilisetty@gmail.com", href: "mailto:bharathkiranobilisetty@gmail.com" },
+    { icon: <Phone />, text: "+91 8639678884", href: "tel:+918639678884" },
+    { icon: <Linkedin />, text: "LinkedIn Profile", href: "https://www.linkedin.com/in/bharath-kiran-obilisetty-289b1022b" },
+    { icon: <MapPin />, text: "Vijayawada, India" },
+];
+
+const faqItems = [
+    {
+        question: "What's your typical project timeline?",
+        answer: "Depending on complexity, projects range from 2-8 weeks. I'll provide a detailed timeline after understanding your requirements.",
+    },
+    {
+        question: "What are your rates?",
+        answer: "My rates vary based on project scope and complexity. Let's discuss your project and I'll provide a fair quote. Student and nonprofit discounts available.",
+    },
+    {
+        question: "Do you work with clients remotely?",
+        answer: "Yes! I work with clients worldwide. Communication through video calls, Slack, and project management tools ensures a smooth workflow.",
+    },
+    {
+        question: "What's your primary tech stack?",
+        answer: "I primarily work with React, Next.js, Node.js, and Python. For databases, I'm experienced with both SQL and NoSQL solutions like PostgreSQL and Firebase. I'm always learning and adapting to new technologies.",
+    },
+];
+
+function SubmitButton() {
+    const { pending } = useFormStatus();
+    return (
+        <Button type="submit" size="lg" disabled={pending} className="w-full button-gradient-primary shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+            {pending ? (
+                <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                    Sending...
+                </>
+            ) : (
+                <>
+                    <Send className="mr-2 h-5 w-5" /> Send Message
+                </>
+            )}
+        </Button>
+    );
+}
+
+export default function ContactPage() {
+    const { toast } = useToast();
+    const [state, formAction] = useFormState(submitContactForm, { message: '' });
+    
+    const form = useForm<ContactFormValues>({
+        resolver: zodResolver(contactSchema),
+        defaultValues: { name: '', email: '', subject: '', message: '' },
+    });
+    
+    React.useEffect(() => {
+        if (state.message) {
+            if (state.errors) {
+                toast({
+                    variant: "destructive",
+                    title: "Oops! Something went wrong.",
+                    description: state.message,
+                });
+            } else {
+                toast({
+                    title: "Success!",
+                    description: state.message,
+                });
+                form.reset();
+            }
+        }
+    }, [state, toast, form]);
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: { y: 0, opacity: 1, transition: { duration: 0.5 } },
+    };
+
+    return (
+        <motion.main
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="container mx-auto px-4 md:px-6 py-16 md:py-24 flex-grow"
+        >
+            <div className="text-center mb-12">
+                <p className="font-headline text-lg font-medium text-primary">Contact Me</p>
+                <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-bold font-headline tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+                   Let's Build Something Amazing Together
+                </h1>
+                <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
+                    Have a project in mind? I'd love to hear about it.
+                </p>
+            </div>
+
+            <div className="grid md:grid-cols-5 gap-12">
+                <motion.div
+                    variants={itemVariants} initial="hidden" animate="visible"
+                    className="md:col-span-3 rounded-xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
+                >
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="relative flex h-3 w-3">
+                            <div className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></div>
+                            <div className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></div>
+                        </div>
+                        <p className="text-sm text-green-400">Available for freelance projects. Usually responds within 24 hours.</p>
+                    </div>
+
+                    <Form {...form}>
+                        <form action={formAction} className="space-y-6">
+                             <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Name</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Your Name" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                             <FormField
+                                control={form.control}
+                                name="email"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Email</FormLabel>
+                                        <FormControl>
+                                            <Input type="email" placeholder="your.email@example.com" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="subject"
+                                render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Subject</FormLabel>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <FormControl>
+                                        <SelectTrigger>
+                                        <SelectValue placeholder="Select a subject" />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        <SelectItem value="General Inquiry">General Inquiry</SelectItem>
+                                        <SelectItem value="Project Discussion">Project Discussion</SelectItem>
+                                        <SelectItem value="Job Opportunity">Job Opportunity</SelectItem>
+                                        <SelectItem value="Collaboration">Collaboration</SelectItem>
+                                        <SelectItem value="Other">Other</SelectItem>
+                                    </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                </FormItem>
+                                )}
+                            />
+                             <FormField
+                                control={form.control}
+                                name="message"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Message</FormLabel>
+                                        <FormControl>
+                                            <Textarea placeholder="Tell me about your project..." rows={5} {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <SubmitButton />
+                        </form>
+                    </Form>
+                </motion.div>
+
+                <motion.div
+                     variants={itemVariants} initial="hidden" animate="visible"
+                    className="md:col-span-2 space-y-8"
+                >
+                    <div className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+                        <h3 className="font-headline text-xl font-bold text-white mb-4">Contact Information</h3>
+                        <ul className="space-y-4">
+                            {contactInfo.map((item, index) => (
+                                <li key={index} className="flex items-center gap-4 text-muted-foreground">
+                                    <div className="text-primary">{item.icon}</div>
+                                    {item.href ? (
+                                        <a href={item.href} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                                            {item.text}
+                                        </a>
+                                    ) : (
+                                        <span>{item.text}</span>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                     <div className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+                        <h3 className="font-headline text-xl font-bold text-white mb-4">Working Hours</h3>
+                        <p className="text-muted-foreground">Mon - Fri, 9 AM - 6 PM (IST)</p>
+                        <p className="text-sm text-muted-foreground/70">Open to discussing urgent matters outside of these hours.</p>
+                    </div>
+                </motion.div>
+            </div>
+            
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                className="mt-24"
+            >
+                <div className="text-center mb-12">
+                    <h2 className="font-headline text-3xl font-bold text-white">Frequently Asked Questions</h2>
+                </div>
+                <Accordion type="single" collapsible className="w-full max-w-3xl mx-auto">
+                    {faqItems.map((faq, index) => (
+                        <AccordionItem key={index} value={`item-${index+1}`}>
+                            <AccordionTrigger>{faq.question}</AccordionTrigger>
+                            <AccordionContent className="text-muted-foreground">
+                                {faq.answer}
+                            </AccordionContent>
+                        </AccordionItem>
+                    ))}
+                </Accordion>
+            </motion.div>
+
+        </motion.main>
+    );
+}
