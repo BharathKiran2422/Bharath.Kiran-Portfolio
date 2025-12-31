@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { SiPython, SiJavascript, SiReact, SiHtml5, SiCss3, SiTailwindcss, SiNodedotjs, SiExpress, SiMysql, SiPostgresql, SiMongodb, SiFirebase, SiGit, SiGithub, SiVisualstudiocode, SiPostman } from 'react-icons/si';
+import { SiPython, SiJavascript, SiReact, SiHtml5, SiCss3, SiTailwindcss, SiNodedotjs, SiExpress, SiMysql, SiPostgresql, SiMongodb, SiFirebase, SiGit, SiGithub, SiPostman } from 'react-icons/si';
 import { FaJava } from "react-icons/fa";
 
 const experience = [
@@ -62,11 +62,9 @@ const techSkills = [
   { name: 'Express.js', proficiency: 75, icon: <SiExpress className="h-6 w-6 text-gray-400" /> },
   { name: 'MySQL', proficiency: 85, icon: <SiMysql className="h-6 w-6 text-blue-600" /> },
   { name: 'PostgreSQL', proficiency: 70, icon: <SiPostgresql className="h-6 w-6 text-blue-400" /> },
-  { name: 'MongoDB', proficiency: 70, icon: <SiMongodb className="h-6 w-6 text-green-600" /> },
   { name: 'Firebase', proficiency: 75, icon: <SiFirebase className="h-6 w-6 text-yellow-500" /> },
   { name: 'Git', proficiency: 90, icon: <SiGit className="h-6 w-6 text-red-500" /> },
   { name: 'GitHub', proficiency: 90, icon: <SiGithub className="h-6 w-6" /> },
-  { name: 'VS Code', proficiency: 95, icon: <SiVisualstudiocode className="h-6 w-6 text-blue-500" /> },
   { name: 'Postman', proficiency: 85, icon: <SiPostman className="h-6 w-6 text-orange-500" /> },
 ];
 
