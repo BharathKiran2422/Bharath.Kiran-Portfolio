@@ -10,7 +10,8 @@ import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { SiPython, SiJavascript, SiJava, SiReact, SiHtml5, SiCss3, SiTailwindcss, SiNodedotjs, SiExpress, SiMysql, SiPostgresql, SiMongodb, SiFirebase, SiGit, SiGithub, SiVisualstudiocode, SiPostman } from 'react-icons/si';
+import { SiPython, SiJavascript, SiReact, SiHtml5, SiCss3, SiTailwindcss, SiNodedotjs, SiExpress, SiMysql, SiPostgresql, SiMongodb, SiFirebase, SiGit, SiGithub, SiVisualstudiocode, SiPostman } from 'react-icons/si';
+import { FaJava } from "react-icons/fa";
 
 const experience = [
   {
@@ -52,7 +53,7 @@ const education = {
 const techSkills = [
   { name: 'Python', proficiency: 90, icon: <SiPython className="h-6 w-6 text-blue-400" /> },
   { name: 'JavaScript', proficiency: 85, icon: <SiJavascript className="h-6 w-6 text-yellow-400" /> },
-  { name: 'Java', proficiency: 75, icon: <SiJava className="h-6 w-6 text-red-400" /> },
+  { name: 'Java', proficiency: 75, icon: <FaJava className="h-6 w-6 text-red-400" /> },
   { name: 'React', proficiency: 85, icon: <SiReact className="h-6 w-6 text-blue-500" /> },
   { name: 'HTML5', proficiency: 95, icon: <SiHtml5 className="h-6 w-6 text-orange-500" /> },
   { name: 'CSS3', proficiency: 90, icon: <SiCss3 className="h-6 w-6 text-blue-500" /> },
