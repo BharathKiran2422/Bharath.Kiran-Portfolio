@@ -41,5 +41,40 @@
     "height": 600,
     "alt": "Screenshot of the portfolio website itself",
     "hint": "developer portfolio"
+  },
+  "blogThumb1": {
+    "src": "https://picsum.photos/seed/thumb1/800/600",
+    "width": 800,
+    "height": 600,
+    "alt": "Abstract graphic about UI/UX principles",
+    "hint": "design principles"
+  },
+  "blogThumb2": {
+    "src": "https://picsum.photos/seed/thumb2/800/600",
+    "width": 800,
+    "height": 600,
+    "alt": "Code editor showing Tailwind CSS",
+    "hint": "code editor"
+  },
+  "blogThumb3": {
+    "src": "https://picsum.photos/seed/thumb3/800/600",
+    "width": 800,
+    "height": 600,
+    "alt": "React components visualization",
+    "hint": "react components"
+  },
+  "blogThumb4": {
+    "src": "https://picsum.photos/seed/thumb4/800/600",
+    "width": 800,
+    "height": 600,
+    "alt": "Web application security graphic",
+    "hint": "cyber security"
+  },
+  "blogThumb5": {
+    "src": "https://picsum.photos/seed/thumb5/800/600",
+    "width": 800,
+    "height": 600,
+    "alt": "Machine learning algorithm visualization",
+    "hint": "machine learning"
   }
 }
