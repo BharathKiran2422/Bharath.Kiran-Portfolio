@@ -76,5 +76,45 @@
     "height": 600,
     "alt": "Machine learning algorithm visualization",
     "hint": "machine learning"
+  },
+  "galleryWorkspace1": {
+    "src": "https://picsum.photos/seed/gws1/600/800", "width": 600, "height": 800,
+    "alt": "Clean desk setup with multiple monitors showing code", "hint": "coding workspace"
+  },
+  "galleryWorkspace2": {
+    "src": "https://picsum.photos/seed/gws2/800/600", "width": 800, "height": 600,
+    "alt": "Late night coding session with ambient lighting", "hint": "desk setup"
+  },
+  "galleryEvent1": {
+    "src": "https://picsum.photos/seed/gev1/800/600", "width": 800, "height": 600,
+    "alt": "Team working together at a hackathon", "hint": "hackathon team"
+  },
+  "galleryEvent2": {
+    "src": "https://picsum.photos/seed/gev2/800/600", "width": 800, "height": 600,
+    "alt": "Speaking at a tech meetup", "hint": "public speaking conference"
+  },
+  "galleryProject1": {
+    "src": "https://picsum.photos/seed/gpr1/800/600", "width": 800, "height": 600,
+    "alt": "Whiteboard session with architectural diagrams", "hint": "whiteboard planning"
+  },
+  "galleryProject2": {
+    "src": "https://picsum.photos/seed/gpr2/600/800", "width": 600, "height": 800,
+    "alt": "Mobile app UI design on a screen", "hint": "app design"
+  },
+  "galleryTeam1": {
+    "src": "https://picsum.photos/seed/gtm1/800/600", "width": 800, "height": 600,
+    "alt": "Group photo with internship team", "hint": "office team"
+  },
+  "galleryTeam2": {
+    "src": "https://picsum.photos/seed/gtm2/800/600", "width": 800, "height": 600,
+    "alt": "Collaborative pair programming session", "hint": "pair programming"
+  },
+  "galleryLearning1": {
+    "src": "https://picsum.photos/seed/glr1/600/800", "width": 600, "height": 800,
+    "alt": "Stack of technical books on a desk", "hint": "tech books"
+  },
+  "galleryLearning2": {
+    "src": "https://picsum.photos/seed/glr2/800/600", "width": 800, "height": 600,
+    "alt": "Online certification displayed on a monitor", "hint": "online course"
   }
 }
