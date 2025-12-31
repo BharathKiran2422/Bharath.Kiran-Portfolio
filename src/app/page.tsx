@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Send, Code, Rocket, Layers, GitBranch, ArrowDown } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { SiCodepen, SiDevdotto } from 'react-icons/si';
+import { SiLeetcode, SiCodechef, SiHackerrank } from 'react-icons/si';
 
 const roles = ["Full-Stack Developer", "AI Enthusiast"];
 const stats = [
@@ -15,6 +15,15 @@ const stats = [
     { value: "8+", label: "Technologies Mastered", icon: <Layers className="h-8 w-8 text-primary" /> },
     { value: "240+", label: "GitHub Contributions", icon: <GitBranch className="h-8 w-8 text-primary" /> },
 ];
+
+const socialLinks = [
+  { href: "https://github.com/BharathKiran2422", icon: <Github className="h-7 w-7" />, ariaLabel: "GitHub" },
+  { href: "https://www.linkedin.com/in/bharath-kiran-obilisetty-289b1022b", icon: <Linkedin className="h-7 w-7" />, ariaLabel: "LinkedIn" },
+  { href: "https://www.hackerrank.com/profile/bharathkiran2422", icon: <SiHackerrank className="h-7 w-7" />, ariaLabel: "HackerRank" },
+  { href: "https://leetcode.com/BharathKiran2422/", icon: <SiLeetcode className="h-7 w-7" />, ariaLabel: "LeetCode" },
+  { href: "https://www.codechef.com/users/bharath_kiran", icon: <SiCodechef className="h-7 w-7" />, ariaLabel: "CodeChef" },
+  { href: "mailto:bharathkiranobilisetty@gmail.com", icon: <Send className="h-7 w-7" />, ariaLabel: "Email" },
+]
 
 const AnimatedOrbs = () => (
   <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -28,7 +37,6 @@ export default function Home() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(150);
 
   useEffect(() => {
     const handleTyping = () => {
@@ -80,21 +88,18 @@ export default function Home() {
             </Button>
           </div>
            <div className="mt-8 flex items-center justify-center lg:justify-start gap-6">
-              <a href="https://github.com/BharathKiran2422" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub">
-                <Github className="h-7 w-7" />
-              </a>
-              <a href="https://www.linkedin.com/in/bharath-kiran/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
-                <Linkedin className="h-7 w-7" />
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="CodePen">
-                <SiCodepen className="h-7 w-7" />
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Dev.to">
-                <SiDevdotto className="h-7 w-7" />
-              </a>
-              <a href="mailto:bharathkiranobilisetty@gmail.com" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Email">
-                <Send className="h-7 w-7" />
-              </a>
+              {socialLinks.map((link) => (
+                <a 
+                  key={link.ariaLabel}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label={link.ariaLabel}
+                >
+                  {link.icon}
+                </a>
+              ))}
             </div>
         </motion.div>
 

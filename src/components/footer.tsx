@@ -1,6 +1,16 @@
 import Link from 'next/link';
 import { Github, Linkedin, Mountain, Send } from 'lucide-react';
-import { SiCodepen, SiDevdotto } from 'react-icons/si';
+import { SiLeetcode, SiCodechef, SiHackerrank } from 'react-icons/si';
+
+const socialLinks = [
+  { href: "https://github.com/BharathKiran2422", icon: <Github className="h-5 w-5" />, ariaLabel: "GitHub" },
+  { href: "https://www.linkedin.com/in/bharath-kiran-obilisetty-289b1022b", icon: <Linkedin className="h-5 w-5" />, ariaLabel: "LinkedIn" },
+  { href: "https://www.hackerrank.com/profile/bharathkiran2422", icon: <SiHackerrank className="h-5 w-5" />, ariaLabel: "HackerRank" },
+  { href: "https://leetcode.com/BharathKiran2422/", icon: <SiLeetcode className="h-5 w-5" />, ariaLabel: "LeetCode" },
+  { href: "https://www.codechef.com/users/bharath_kiran", icon: <SiCodechef className="h-5 w-5" />, ariaLabel: "CodeChef" },
+  { href: "mailto:bharathkiranobilisetty@gmail.com", icon: <Send className="h-5 w-5" />, ariaLabel: "Email" },
+]
+
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -17,21 +27,18 @@ export default function Footer() {
             &copy; {currentYear} Bharath Kiran Obilisetty. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <a href="https://github.com/BharathKiran2422" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub">
-              <Github className="h-5 w-5" />
-            </a>
-            <a href="https://www.linkedin.com/in/bharath-kiran/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
-              <Linkedin className="h-5 w-5" />
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="CodePen">
-              <SiCodepen className="h-5 w-5" />
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Dev.to">
-              <SiDevdotto className="h-5 w-5" />
-            </a>
-            <a href="mailto:bharathkiranobilisetty@gmail.com" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Email">
-              <Send className="h-5 w-5" />
-            </a>
+             {socialLinks.map((link) => (
+                <a 
+                  key={link.ariaLabel}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label={link.ariaLabel}
+                >
+                  {link.icon}
+                </a>
+              ))}
           </div>
         </div>
       </div>
