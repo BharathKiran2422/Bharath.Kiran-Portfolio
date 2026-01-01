@@ -35,7 +35,13 @@ const projectsData: Project[] = [
   {
     title: "Yoloo - Fashion E-Commerce Platform",
     description: "A modern e-commerce platform delivering fashion in 30-120 minutes. Features include real-time inventory, secure payments, and responsive design for seamless shopping experience.",
-    image: placeholderImages.yoloo,
+    image: {
+      src: "/yoloo!.png",
+      width: 800,
+      height: 600,
+      alt: "Screenshot of a fashion e-commerce website",
+      hint: "fashion website"
+    },
     techStack: ["React Native", "Node.js", "Express", "MongoDB", "Payments"],
     links: { live: '#', github: '#' },
     status: 'Completed',
