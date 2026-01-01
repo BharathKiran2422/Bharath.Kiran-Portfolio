@@ -33,20 +33,41 @@ type Project = {
 
 const projectsData: Project[] = [
   {
-    title: "Yoloo - Fashion E-Commerce Platform",
-    description: "A modern e-commerce platform delivering fashion in 30-120 minutes. Features include real-time inventory, secure payments, and responsive design for seamless shopping experience.",
-    image: {
-      src: "/yoloo!.png",
-      width: 800,
-      height: 600,
-      alt: "Screenshot of a fashion e-commerce website",
-      hint: "fashion website"
-    },
-    techStack: ["React Native", "Node.js", "Express", "MongoDB", "Payments"],
-    links: { live: '#', github: '#' },
+    title: "Yoloo - Fashion Platform",
+    description: "A modern platform delivering fashion in 30-120 minutes. Enjoy curated collections, exclusive deals, and smart recommendations that make shopping faster, easier, and more stylish than ever.",
+    image: placeholderImages.yoloo,
+    techStack: ["React Native", "Node.js", "Express", "MongoDB", "Firebase"],
+    links: { live: 'https://yoloo.co.in/home', github: 'https://github.com/BharathKiran2422/Yoloo' },
     status: 'Completed',
     category: ['Web Apps', 'Full-Stack'],
     featured: true,
+  },
+  {
+    title: "Budget_Buddy - AI Ride-Sharing App",
+    description: "Take Control of Your Finances. The simple, smart, and secure way to manage your money. Track spending, visualize habits, and get AI-powered insights to save more.",
+    image: placeholderImages.budget_buddy,
+    techStack: ["React Native", "Node.js", "PostgreSQL", "Firebase", "AI/ML"],
+    links: { live: 'https://budget-buddy-bk.vercel.app', github: 'https://github.com/BharathKiran2422/Budget-Buddy', caseStudy: '#' },
+    status: 'Completed',
+    category: ['Web Apps', 'Full-Stack', 'Data Science'],
+  },
+  {
+    title: "Gender_Age_Predition",
+    description: "This project utilizes Convolutional Neural Networks (CNNs) to accurately predict the gender and age of individuals from facial images. Trained on the comprehensive UTKFace dataset, the model is adept at recognizing gender and estimating age ranges.",
+    image: placeholderImages.gender_age_prediction,
+    techStack: ["Python (Version 3.x)", "TensorFlow (Version 2.x)", "Keras", "OpenCV", "NumPy", "Matplotlib"],
+    links: { github: 'https://github.com/BharathKiran2422/GENDER_AGE_PREDICTION_USING_CNN', caseStudy: '#' },
+    status: 'Completed',
+    category: ['Data Science'],
+  },
+  {
+    title: "This Portfolio Website",
+    description: "My personal portfolio site, built from scratch to showcase my skills in modern web development and design.",
+    image: placeholderImages.portfolioWebsite,
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    links: { live: 'https://bharath-kiran.vercel.app', github: 'https://github.com/BharathKiran2422/Bharath.Kiran-Portfolio' },
+    status: 'Completed',
+    category: ['UI/UX', 'Web Apps'],
   },
   {
     title: "RideTogether - AI Ride-Sharing App",
@@ -83,15 +104,6 @@ const projectsData: Project[] = [
     links: { live: '#', github: '#' },
     status: 'Completed',
     category: ['Web Apps', 'UI/UX'],
-  },
-   {
-    title: "This Portfolio Website",
-    description: "My personal portfolio site, built from scratch to showcase my skills in modern web development and design.",
-    image: placeholderImages.portfolioWebsite,
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    links: { github: '#' },
-    status: 'Completed',
-    category: ['UI/UX', 'Web Apps'],
   },
 ];
 

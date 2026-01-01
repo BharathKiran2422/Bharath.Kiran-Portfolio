@@ -4,7 +4,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Award, Briefcase, Building, Calendar, CheckCircle, Code, Download, GraduationCap, Mail, MapPin, Monitor, Puzzle, School, ShieldCheck, Star, User, Zap } from 'lucide-react';
+import { Award, Briefcase, Building, Calendar, CheckCircle, Code, Download, GraduationCap, Mail, MapPin, Monitor, Puzzle, School, ShieldCheck, Star, User, Zap, BrainCircuit, Users, Clock, Lightbulb, TrendingUp, HeartHandshake } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -51,31 +51,29 @@ const education = {
 };
 
 const techSkills = [
-  { name: 'Python', proficiency: 90, icon: <SiPython className="h-6 w-6 text-blue-400" /> },
-  { name: 'JavaScript', proficiency: 85, icon: <SiJavascript className="h-6 w-6 text-yellow-400" /> },
-  { name: 'Java', proficiency: 75, icon: <FaJava className="h-6 w-6 text-red-400" /> },
-  { name: 'React', proficiency: 85, icon: <SiReact className="h-6 w-6 text-blue-500" /> },
-  { name: 'HTML5', proficiency: 95, icon: <SiHtml5 className="h-6 w-6 text-orange-500" /> },
-  { name: 'CSS3', proficiency: 90, icon: <SiCss3 className="h-6 w-6 text-blue-500" /> },
-  { name: 'Tailwind CSS', proficiency: 80, icon: <SiTailwindcss className="h-6 w-6 text-teal-400" /> },
-  { name: 'Node.js', proficiency: 80, icon: <SiNodedotjs className="h-6 w-6 text-green-500" /> },
-  { name: 'Express.js', proficiency: 75, icon: <SiExpress className="h-6 w-6 text-gray-400" /> },
-  { name: 'MySQL', proficiency: 85, icon: <SiMysql className="h-6 w-6 text-blue-600" /> },
-  { name: 'PostgreSQL', proficiency: 70, icon: <SiPostgresql className="h-6 w-6 text-blue-400" /> },
-  { name: 'Firebase', proficiency: 75, icon: <SiFirebase className="h-6 w-6 text-yellow-500" /> },
-  { name: 'Git', proficiency: 90, icon: <SiGit className="h-6 w-6 text-red-500" /> },
-  { name: 'GitHub', proficiency: 90, icon: <SiGithub className="h-6 w-6" /> },
-  { name: 'Postman', proficiency: 85, icon: <SiPostman className="h-6 w-6 text-orange-500" /> },
+    { name: 'Python', icon: <SiPython className="h-10 w-10 text-blue-400" /> },
+    { name: 'Java', icon: <FaJava className="h-10 w-10 text-orange-500" /> },
+    { name: 'MySQL', icon: <SiMysql className="h-10 w-10 text-blue-600" /> },
+    { name: 'React', icon: <SiReact className="h-10 w-10 text-blue-500" /> },
+    { name: 'Node.js', icon: <SiNodedotjs className="h-10 w-10 text-green-500" /> },
+    { name: 'Firebase', icon: <SiFirebase className="h-10 w-10 text-yellow-500" /> },
+    { name: 'Git', icon: <SiGit className="h-10 w-10 text-red-500" /> },
+    { name: 'GitHub', icon: <SiGithub className="h-10 w-10" /> },
+    { name: 'HTML5', icon: <SiHtml5 className="h-10 w-10 text-orange-600" /> },
+    { name: 'CSS3', icon: <SiCss3 className="h-10 w-10 text-blue-600" /> },
+    { name: 'JavaScript', icon: <SiJavascript className="h-10 w-10 text-yellow-400" /> },
+    { name: 'Postman', icon: <SiPostman className="h-10 w-10 text-orange-500" /> },
 ];
 
 const softSkills = [
-  { name: 'Problem Solving', description: 'Breaking down complex issues into manageable solutions.' },
-  { name: 'Communication', description: 'Articulating ideas clearly to technical and non-technical audiences.' },
-  { name: 'Quick Learning', description: 'Rapidly adapting to new technologies and concepts.' },
-  { name: 'Analytical Thinking', description: 'Leveraging data to drive decisions and strategies.' },
-  { name: 'Team Collaboration', description: 'Working effectively in agile team environments.' },
-  { name: 'Time Management', description: 'Prioritizing tasks to meet deadlines efficiently.' },
+  { name: 'Problem Solving', icon: <BrainCircuit className="h-10 w-10 text-primary" /> },
+  { name: 'Communication', icon: <Users className="h-10 w-10 text-primary" /> },
+  { name: 'Quick Learning', icon: <Lightbulb className="h-10 w-10 text-primary" /> },
+  { name: 'Analytical Thinking', icon: <TrendingUp className="h-10 w-10 text-primary" /> },
+  { name: 'Smart Work', icon: <Zap className="h-10 w-10 text-primary" /> },
+  { name: 'Patience', icon: <Clock className="h-10 w-10 text-primary" /> },
 ];
+
 
 const certifications = [
     { name: 'Google UX Design', issuer: 'Google', year: '2024', link: '#' },
@@ -216,45 +214,39 @@ const ResumePage = () => {
           </TabsContent>
 
           <TabsContent value="skills" className="mt-8">
-            <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <motion.div 
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+            >
+                <div className="text-center mb-12">
+                    <h2 className="font-headline text-3xl font-bold text-white">Skills</h2>
+                    <p className="text-muted-foreground mt-2">A showcase of my technical and soft skills, demonstrating my ability to tackle diverse challenges and collaborate effectively.</p>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <Card className="bg-white/5 border-white/10">
                         <CardHeader>
-                            <CardTitle className="font-headline">Technical Skills</CardTitle>
+                            <CardTitle className="font-headline text-center">Technical Skills</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4">
+                        <CardContent className="grid grid-cols-3 sm:grid-cols-4 gap-6">
                             {techSkills.map(skill => (
-                                <div key={skill.name} className="cursor-target">
-                                    <div className="flex justify-between items-center mb-1">
-                                        <div className="flex items-center gap-2">
-                                            {skill.icon}
-                                            <span className="font-medium text-white">{skill.name}</span>
-                                        </div>
-                                        <span className="text-sm text-muted-foreground">{skill.proficiency}%</span>
-                                    </div>
-                                    <div className="h-2 w-full rounded-full bg-primary/10">
-                                        <motion.div
-                                            className="h-2 rounded-full bg-primary"
-                                            style={{ width: `${skill.proficiency}%` }}
-                                            initial={{ width: 0 }}
-                                            whileInView={{ width: `${skill.proficiency}%` }}
-                                            transition={{ duration: 0.5, ease: 'easeOut' }}
-                                            viewport={{ once: true }}
-                                        />
-                                    </div>
+                                <div key={skill.name} className="flex flex-col items-center justify-center gap-2 cursor-target p-2 rounded-lg transition-transform hover:-translate-y-1">
+                                    {skill.icon}
+                                    <span className="text-sm font-medium text-white">{skill.name}</span>
                                 </div>
                             ))}
                         </CardContent>
                     </Card>
                     <Card className="bg-white/5 border-white/10">
                         <CardHeader>
-                            <CardTitle className="font-headline">Soft Skills</CardTitle>
+                            <CardTitle className="font-headline text-center">Soft Skills</CardTitle>
                         </CardHeader>
-                        <CardContent className="grid grid-cols-2 gap-4">
+                        <CardContent className="grid grid-cols-3 gap-6">
                             {softSkills.map(skill => (
-                                <div key={skill.name} className="flex flex-col items-center text-center p-4 rounded-lg bg-white/5 cursor-target">
-                                    <h4 className="font-semibold text-white">{skill.name}</h4>
-                                    <p className="text-xs text-muted-foreground mt-1">{skill.description}</p>
+                                <div key={skill.name} className="flex flex-col items-center justify-center gap-2 cursor-target p-2 rounded-lg transition-transform hover:-translate-y-1">
+                                    {skill.icon}
+                                    <span className="text-sm font-medium text-white">{skill.name}</span>
                                 </div>
                             ))}
                         </CardContent>
@@ -342,3 +334,5 @@ const ResumePage = () => {
 };
 
 export default ResumePage;
+
+    

@@ -1,11 +1,25 @@
 
 {
   "yoloo": {
-    "src": "/yoloo!.png",
+    "src": "/yoloo.png",
     "width": 800,
     "height": 600,
     "alt": "Screenshot of a fashion e-commerce website",
     "hint": "fashion website"
+  },
+  "budget_buddy": {
+    "src": "/budget_buddy.png",
+    "width": 800,
+    "height": 600,
+    "alt": "Screenshot of a budget_buddy website interface",
+    "hint": "budget_buddy website"
+  },
+  "gender_age_prediction": {
+    "src": "/gender_age_prediction.png",
+    "width": 800,
+    "height": 600,
+    "alt": "Screenshot of a gender_age_prediction output",
+    "hint": "gender_age_prediction output"
   },
   "rideTogether": {
     "src": "https://picsum.photos/seed/ride/800/600",
@@ -36,7 +50,7 @@
     "hint": "task manager"
   },
   "portfolioWebsite": {
-    "src": "https://picsum.photos/seed/portfolio/800/600",
+    "src": "/portfolio.png",
     "width": 800,
     "height": 600,
     "alt": "Screenshot of the portfolio website itself",
