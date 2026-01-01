@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -28,10 +29,8 @@ export default function Header() {
   const menuItems = navLinks.map(navLink => ({
       ...navLink,
       linkComponent: (
-        <Link href={navLink.href} passHref legacyBehavior>
-          <a className="sm-panel-item" aria-label={navLink.ariaLabel}>
+        <Link href={navLink.href} className="sm-panel-item" aria-label={navLink.ariaLabel}>
             <span className="sm-panel-itemLabel">{navLink.label}</span>
-          </a>
         </Link>
       )
   }));
