@@ -33,7 +33,7 @@ export default function Header() {
             displaySocials={true}
             displayItemNumbering={true}
             menuButtonColor="#fff"
-            openMenuButtonColor="#000"
+            openMenuButtonColor="#fff"
             changeMenuColorOnOpen={true}
             colors={['#8A2BE2', '#4B0082', '#483D8B', '#6A5ACD']}
             accentColor="hsl(var(--primary))"
