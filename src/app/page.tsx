@@ -190,7 +190,7 @@ export default function Home() {
                     }}
                 />
                 <Image
-                    src="/profile.pic.png"
+                    src="/profile_pic.png"
                     alt="Bharath's Profile Picture"
                     width={320}
                     height={384}
