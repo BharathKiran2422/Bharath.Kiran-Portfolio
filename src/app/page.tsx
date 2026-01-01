@@ -52,24 +52,34 @@ export default function Home() {
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handlePointerMove = (e: { clientX: number; clientY: number }) => {
     if (!ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
 
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
+    const pointerX = e.clientX - rect.left;
+    const pointerY = e.clientY - rect.top;
 
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
+    const xPct = pointerX / width - 0.5;
+    const yPct = pointerY / height - 0.5;
 
     x.set(xPct);
     y.set(yPct);
   };
+  
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    handlePointerMove(e);
+  };
 
-   const handleMouseLeave = () => {
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if(e.touches[0]) {
+      handlePointerMove(e.touches[0]);
+    }
+  };
+
+   const handlePointerLeave = () => {
     x.set(0);
     y.set(0);
   };
@@ -143,7 +153,10 @@ export default function Home() {
         <motion.div
             ref={ref}
             onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+            onMouseLeave={handlePointerLeave}
+            onTouchStart={handleTouchMove}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handlePointerLeave}
             style={{
                 rotateX,
                 rotateY,
