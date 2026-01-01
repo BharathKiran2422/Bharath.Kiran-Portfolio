@@ -1,11 +1,12 @@
+
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Send, Code, Rocket, Layers, GitBranch, ArrowDown } from 'lucide-react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { SiLeetcode, SiCodechef, SiHackerrank } from 'react-icons/si';
 
 const roles = ["Full-Stack Developer", "AI Enthusiast"];
@@ -37,6 +38,42 @@ export default function Home() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const top = useTransform(mouseYSpring, [0.5, -0.5], ["40%", "60%"]);
+  const left = useTransform(mouseXSpring, [0.5, -0.5], ["60%", "40%"]);
+  
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!ref.current) return;
+
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+   const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
 
   useEffect(() => {
     const handleTyping = () => {
@@ -103,24 +140,68 @@ export default function Home() {
             </div>
         </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative flex justify-center"
+        <motion.div
+            ref={ref}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{
+                rotateX,
+                rotateY,
+                transformStyle: "preserve-3d",
+            }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative flex justify-center"
         >
-          <div className="relative h-80 w-80 sm:h-96 sm:w-96 group">
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary to-accent opacity-50 blur-xl group-hover:opacity-75 transition-all duration-500 animate-[spin_4s_linear_infinite]" />
-            <Image
-                src="/profile.pic.png"
-                alt="Bharath's Profile Picture"
-                width={400}
-                height={400}
-                priority
-                data-ai-hint="portrait man"
-                className="relative h-full w-full rounded-full object-cover shadow-2xl"
-            />
-          </div>
+            <div
+                style={{
+                transform: "translateZ(75px)",
+                transformStyle: "preserve-3d",
+                }}
+                className="relative h-96 w-80 rounded-xl bg-gradient-to-br from-primary/20 to-white/10 p-2 shadow-2xl"
+            >
+                <motion.div
+                    style={{
+                        background: "linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%)",
+                        position: 'absolute',
+                        content: '""',
+                        zIndex: 2,
+                        width: '100%',
+                        height: '100%',
+                        top: 0,
+                        left: 0,
+                        opacity: 0.4,
+                    }}
+                />
+                <motion.div
+                    style={{
+                        position: 'absolute',
+                        content: '""',
+                        zIndex: 2,
+                        width: 100,
+                        height: 100,
+                        top,
+                        left,
+                        background: "rgba(255, 255, 255, 0.2)",
+                        filter: 'blur(30px)',
+                        opacity: 0.5,
+                        borderRadius: '100%',
+                    }}
+                />
+                <Image
+                    src="/profile.pic.png"
+                    alt="Bharath's Profile Picture"
+                    width={320}
+                    height={384}
+                    priority
+                    data-ai-hint="portrait man"
+                    className="relative h-full w-full rounded-lg object-cover"
+                    style={{
+                        transform: "translateZ(50px)",
+                    }}
+                />
+            </div>
         </motion.div>
       </section>
 
