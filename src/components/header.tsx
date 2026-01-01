@@ -4,6 +4,8 @@
 import * as React from "react"
 import { StaggeredMenu } from "./StaggeredMenu"
 import Link from "next/link"
+import { Github, Linkedin, Send } from "lucide-react"
+import { SiCodechef, SiHackerrank, SiLeetcode } from "react-icons/si"
 
 const navLinks = [
   { href: "/", label: "Home", ariaLabel: "Home" },
@@ -16,12 +18,12 @@ const navLinks = [
 ]
 
 const socialItems = [
-  { label: 'GitHub', link: "https://github.com/BharathKiran2422" },
-  { label: 'LinkedIn', link: "https://www.linkedin.com/in/bharath-kiran-obilisetty-289b1022b" },
-  { label: 'HackerRank', link: "https://www.hackerrank.com/profile/bharathkiran2422" },
-  { label: 'LeetCode', link: "https://leetcode.com/BharathKiran2422/" },
-  { label: 'CodeChef', link: "https://www.codechef.com/users/bharath_kiran" },
-  { label: 'Email', link: "mailto:bharathkiranobilisetty@gmail.com" },
+  { label: 'GitHub', link: "https://github.com/BharathKiran2422", icon: <Github /> },
+  { label: 'LinkedIn', link: "https://www.linkedin.com/in/bharath-kiran-obilisetty-289b1022b", icon: <Linkedin /> },
+  { label: 'HackerRank', link: "https://www.hackerrank.com/profile/bharathkiran2422", icon: <SiHackerrank /> },
+  { label: 'LeetCode', link: "https://leetcode.com/BharathKiran2422/", icon: <SiLeetcode /> },
+  { label: 'CodeChef', link: "https://www.codechef.com/users/bharath_kiran", icon: <SiCodechef /> },
+  { label: 'Email', link: "mailto:bharathkiranobilisetty@gmail.com", icon: <Send /> },
 ]
 
 
