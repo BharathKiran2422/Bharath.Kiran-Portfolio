@@ -128,7 +128,7 @@ const AboutPage = () => {
           >
              <div className="relative">
               <div className="absolute -inset-2 rounded-lg bg-gradient-to-r from-purple-600 to-violet-500 opacity-20 blur-xl"></div>
-              <ul className="relative rounded-xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm space-y-8">
+              <ul className="relative rounded-xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm space-y-8 cursor-target">
                 {timelineEvents.map((event, index) => (
                   <li key={index} className="flex items-start gap-4">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -162,7 +162,7 @@ const AboutPage = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="group relative rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:-translate-y-2"
+                className="group relative rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:-translate-y-2 cursor-target"
               >
                 <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative">
@@ -191,7 +191,7 @@ const AboutPage = () => {
               <motion.div 
                 key={index}
                 variants={itemVariants}
-                className="flex flex-col items-center text-center rounded-xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
+                className="flex flex-col items-center text-center rounded-xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm cursor-target"
               >
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
                     {principle.icon}
@@ -216,7 +216,7 @@ const AboutPage = () => {
             Have a project in mind or want to discuss technology? I'd love to hear from you.
           </p>
           <div className="mt-6">
-            <Button size="lg" asChild className="button-gradient-primary shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+            <Button size="lg" asChild className="button-gradient-primary shadow-lg shadow-primary/20 hover:scale-105 transition-transform cursor-target">
               <Link href="/contact">Get in Touch</Link>
             </Button>
           </div>

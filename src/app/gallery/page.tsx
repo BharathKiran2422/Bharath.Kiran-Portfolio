@@ -89,7 +89,7 @@ const GalleryPage = () => {
                     key={filter}
                     variant={activeFilter === filter ? 'default' : 'outline'}
                     onClick={() => setActiveFilter(filter)}
-                    className="transition-all"
+                    className="transition-all cursor-target"
                 >
                     {filter}
                 </Button>
@@ -106,7 +106,7 @@ const GalleryPage = () => {
                 <motion.div
                     key={photo.src}
                     variants={itemVariants}
-                    className="break-inside-avoid group relative rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm cursor-pointer"
+                    className="break-inside-avoid group relative rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm cursor-pointer cursor-target"
                     onClick={() => openLightbox(index)}
                 >
                     <Image 

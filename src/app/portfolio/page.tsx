@@ -133,7 +133,7 @@ const PortfolioPage = () => {
                     key={filter}
                     variant={activeFilter === filter ? 'default' : 'outline'}
                     onClick={() => setActiveFilter(filter)}
-                    className="transition-all"
+                    className="transition-all cursor-target"
                 >
                     {filter}
                 </Button>
@@ -150,7 +150,7 @@ const PortfolioPage = () => {
                 <motion.div
                     key={project.title}
                     variants={itemVariants}
-                    className={`group relative rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/50 hover:-translate-y-2
+                    className={`group relative rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/50 hover:-translate-y-2 cursor-target
                         ${project.featured ? 'md:col-span-2' : ''}
                     `}
                 >
@@ -177,21 +177,21 @@ const PortfolioPage = () => {
                            </div>
                            <div className="flex items-center gap-4">
                                {project.links.live && (
-                                   <Button size="sm" asChild className="button-gradient-primary">
+                                   <Button size="sm" asChild className="button-gradient-primary cursor-target">
                                        <Link href={project.links.live} target="_blank">
                                            <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
                                        </Link>
                                    </Button>
                                )}
                                {project.links.github && (
-                                    <Button size="sm" variant="outline" asChild>
+                                    <Button size="sm" variant="outline" asChild className="cursor-target">
                                        <Link href={project.links.github} target="_blank">
                                            <Github className="mr-2 h-4 w-4" /> GitHub
                                        </Link>
                                    </Button>
                                )}
                                 {project.links.caseStudy && (
-                                   <Button size="sm" variant="link" asChild>
+                                   <Button size="sm" variant="link" asChild className="cursor-target">
                                        <Link href={project.links.caseStudy} target="_blank">
                                             Case Study
                                        </Link>

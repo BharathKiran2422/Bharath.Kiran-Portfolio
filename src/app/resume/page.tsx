@@ -135,7 +135,7 @@ const ResumePage = () => {
                 </h1>
                 <p className="mt-2 text-muted-foreground">Experience, Education & Achievements</p>
             </div>
-            <Button asChild className="mt-4 md:mt-0 button-gradient-primary shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+            <Button asChild className="mt-4 md:mt-0 button-gradient-primary shadow-lg shadow-primary/20 hover:scale-105 transition-transform cursor-target">
                 <Link href="/Bharath_Kiran_Resume.pdf" download="Bharath_Kiran_Resume.pdf">
                     <Download className="mr-2 h-4 w-4" />
                     Download Resume
@@ -145,11 +145,11 @@ const ResumePage = () => {
 
         <Tabs defaultValue="experience" className="w-full">
           <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 bg-white/5 border border-white/10 p-1 h-auto">
-            <TabsTrigger value="experience">Experience</TabsTrigger>
-            <TabsTrigger value="education">Education</TabsTrigger>
-            <TabsTrigger value="skills">Skills</TabsTrigger>
-            <TabsTrigger value="certifications">Certifications</TabsTrigger>
-            <TabsTrigger value="profile">Profile</TabsTrigger>
+            <TabsTrigger value="experience" className="cursor-target">Experience</TabsTrigger>
+            <TabsTrigger value="education" className="cursor-target">Education</TabsTrigger>
+            <TabsTrigger value="skills" className="cursor-target">Skills</TabsTrigger>
+            <TabsTrigger value="certifications" className="cursor-target">Certifications</TabsTrigger>
+            <TabsTrigger value="profile" className="cursor-target">Profile</TabsTrigger>
           </TabsList>
           
           <TabsContent value="experience" className="mt-8">
@@ -162,7 +162,7 @@ const ResumePage = () => {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.3 }}
-                  className="relative mb-12"
+                  className="relative mb-12 cursor-target"
                 >
                   <div className="absolute -left-10 top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary ring-8 ring-background" />
                   <p className="text-sm font-semibold text-primary">{item.date}</p>
@@ -186,7 +186,7 @@ const ResumePage = () => {
 
           <TabsContent value="education" className="mt-8">
              <motion.div variants={containerVariants} initial="hidden" animate="visible">
-                <Card className="bg-white/5 border-white/10">
+                <Card className="bg-white/5 border-white/10 cursor-target">
                     <CardHeader>
                         <div className="flex justify-between items-start">
                             <div>
@@ -230,7 +230,7 @@ const ResumePage = () => {
                         </CardHeader>
                         <CardContent className="space-y-4">
                             {techSkills.map(skill => (
-                                <div key={skill.name}>
+                                <div key={skill.name} className="cursor-target">
                                     <div className="flex justify-between items-center mb-1">
                                         <div className="flex items-center gap-2">
                                             {skill.icon}
@@ -258,7 +258,7 @@ const ResumePage = () => {
                         </CardHeader>
                         <CardContent className="grid grid-cols-2 gap-4">
                             {softSkills.map(skill => (
-                                <div key={skill.name} className="flex flex-col items-center text-center p-4 rounded-lg bg-white/5">
+                                <div key={skill.name} className="flex flex-col items-center text-center p-4 rounded-lg bg-white/5 cursor-target">
                                     <h4 className="font-semibold text-white">{skill.name}</h4>
                                     <p className="text-xs text-muted-foreground mt-1">{skill.description}</p>
                                 </div>
@@ -279,7 +279,7 @@ const ResumePage = () => {
             >
                 {certifications.map((cert, index) => (
                     <motion.div key={index} variants={itemVariants}>
-                        <Card className="bg-white/5 border-white/10 group h-full flex flex-col">
+                        <Card className="bg-white/5 border-white/10 group h-full flex flex-col cursor-target">
                             <CardHeader className="flex-row items-center gap-4">
                                 <div className="p-3 rounded-lg bg-primary/10 text-primary">
                                     <Award className="h-8 w-8" />
@@ -294,7 +294,7 @@ const ResumePage = () => {
                                     <CheckCircle className="h-3 w-3 mr-1" />
                                     Verified
                                 </Badge>
-                                <Link href={cert.link} target="_blank" className="text-sm text-primary hover:underline">
+                                <Link href={cert.link} target="_blank" className="text-sm text-primary hover:underline cursor-target">
                                     View Certificate
                                 </Link>
                             </CardContent>
@@ -324,13 +324,13 @@ const ResumePage = () => {
                             </ul>
                         </div>
                         <div className="flex items-center gap-4 pt-4">
-                           <Button asChild className="button-gradient-primary shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+                           <Button asChild className="button-gradient-primary shadow-lg shadow-primary/20 hover:scale-105 transition-transform cursor-target">
                                 <Link href="/Bharath_Kiran_Resume.pdf" download="Bharath_Kiran_Resume.pdf">
                                     <Download className="mr-2 h-4 w-4" />
                                     Download Resume
                                 </Link>
                             </Button>
-                            <Button variant="outline" asChild className="hover:bg-primary/10 hover:text-primary transition-colors">
+                            <Button variant="outline" asChild className="hover:bg-primary/10 hover:text-primary transition-colors cursor-target">
                                 <Link href="https://www.linkedin.com/in/bharath-kiran-obilisetty-289b1022b" target="_blank">
                                     <User className="mr-2 h-4 w-4" />
                                     LinkedIn Profile

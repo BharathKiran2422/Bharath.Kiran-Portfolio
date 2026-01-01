@@ -128,7 +128,7 @@ const BlogPage = () => {
                     <div className="lg:col-span-8">
                         {featuredPost && (
                             <motion.div variants={itemVariants} initial="hidden" animate="visible" className="mb-12">
-                                <Card className="relative group overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:-translate-y-1">
+                                <Card className="relative group overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 cursor-target">
                                     <div className="md:flex">
                                         <div className="md:w-1/2">
                                             <Image
@@ -166,7 +166,7 @@ const BlogPage = () => {
                                                         <Image src={featuredPost.author.photo} alt={featuredPost.author.name} width={40} height={40} className="rounded-full" />
                                                         <span className="font-semibold text-white">{featuredPost.author.name}</span>
                                                     </div>
-                                                    <Button asChild variant="link" className="text-primary">
+                                                    <Button asChild variant="link" className="text-primary cursor-target">
                                                         <Link href="#">Read More <ArrowRight className="ml-1 h-4 w-4"/></Link>
                                                     </Button>
                                                 </div>
@@ -180,7 +180,7 @@ const BlogPage = () => {
                         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {regularPosts.map((post, index) => (
                                 <motion.div key={index} variants={itemVariants}>
-                                    <Card className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 h-full flex flex-col">
+                                    <Card className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 h-full flex flex-col cursor-target">
                                         <CardHeader className="p-0">
                                             <Image
                                                 src={post.image.src}
@@ -213,7 +213,7 @@ const BlogPage = () => {
                             ))}
                         </motion.div>
                          <div className="mt-12 text-center">
-                            <Button variant="outline">Load More Posts</Button>
+                            <Button variant="outline" className="cursor-target">Load More Posts</Button>
                         </div>
                     </div>
 
@@ -225,7 +225,7 @@ const BlogPage = () => {
                                 <ul className="space-y-2">
                                     {categories.map(cat => (
                                         <li key={cat}>
-                                            <Link href="#" className="flex justify-between items-center text-muted-foreground hover:text-primary transition-colors">
+                                            <Link href="#" className="flex justify-between items-center text-muted-foreground hover:text-primary transition-colors cursor-target">
                                                 <span>{cat}</span>
                                                 <Badge variant="secondary">{blogPosts.filter(p => p.categories.includes(cat)).length}</Badge>
                                             </Link>
@@ -238,7 +238,7 @@ const BlogPage = () => {
                             <CardHeader><h3 className="font-headline text-xl font-bold text-white">Popular Posts</h3></CardHeader>
                             <CardContent className="space-y-4">
                                 {popularPosts.map((post, index) => (
-                                    <Link key={index} href="#" className="flex items-center gap-4 group">
+                                    <Link key={index} href="#" className="flex items-center gap-4 group cursor-target">
                                         <Image src={post.image.src} alt={post.image.alt} data-ai-hint={post.image.hint} width={80} height={80} className="rounded-lg object-cover" />
                                         <div>
                                             <p className="font-semibold text-white group-hover:text-primary transition-colors">{post.title}</p>
@@ -254,7 +254,7 @@ const BlogPage = () => {
                                 <p className="text-muted-foreground mb-4 text-sm">Join my newsletter for weekly tips on web development and AI.</p>
                                 <div className="flex gap-2">
                                     <Input placeholder="your.email@example.com" className="bg-white/5" />
-                                    <Button className="button-gradient-primary">Subscribe</Button>
+                                    <Button className="button-gradient-primary cursor-target">Subscribe</Button>
                                 </div>
                             </CardContent>
                         </Card>

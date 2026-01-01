@@ -19,7 +19,7 @@ export default function Footer() {
     <footer className="border-t border-white/10">
       <div className="container mx-auto px-4 py-8 md:px-6">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 cursor-target">
             <Mountain className="h-6 w-6 text-primary" />
             <span className="font-headline text-lg font-bold">Bharath Kiran</span>
           </div>
@@ -33,7 +33,7 @@ export default function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors cursor-target"
                   aria-label={link.ariaLabel}
                 >
                   {link.icon}

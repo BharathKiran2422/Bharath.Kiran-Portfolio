@@ -117,10 +117,10 @@ export default function Home() {
             I transform complex problems into elegant solutions through clean code and thoughtful design. Specializing in React, Node.js, and modern web technologies with a growing passion for AI and data science.
           </p>
           <div className="mt-8 flex flex-wrap justify-center lg:justify-start items-center gap-4">
-            <Button size="lg" asChild className="button-gradient-primary shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+            <Button size="lg" asChild className="button-gradient-primary shadow-lg shadow-primary/20 hover:scale-105 transition-transform cursor-target">
               <Link href="/portfolio">View My Work</Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="hover:bg-primary/10 hover:text-primary transition-colors">
+            <Button size="lg" variant="outline" asChild className="hover:bg-primary/10 hover:text-primary transition-colors cursor-target">
                <Link href="/Bharath_Kiran_Resume.pdf" download="Bharath_Kiran_Resume.pdf">Download Resume</Link>
             </Button>
           </div>
@@ -131,7 +131,7 @@ export default function Home() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors cursor-target"
                   aria-label={link.ariaLabel}
                 >
                   {link.icon}
@@ -152,7 +152,7 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative flex justify-center"
+            className="relative flex justify-center cursor-target"
         >
             <div
                 style={{
@@ -214,7 +214,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group flex flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300"
+              className="group flex flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300 cursor-target"
             >
               {stat.icon}
               <p className="font-headline text-4xl font-bold text-white">{stat.value}</p>

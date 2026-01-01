@@ -54,7 +54,7 @@ const faqItems = [
 function SubmitButton() {
     const { pending } = useFormStatus();
     return (
-        <Button type="submit" size="lg" disabled={pending} className="w-full button-gradient-primary shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+        <Button type="submit" size="lg" disabled={pending} className="w-full button-gradient-primary shadow-lg shadow-primary/20 hover:scale-105 transition-transform cursor-target">
             {pending ? (
                 <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
@@ -172,7 +172,7 @@ export default function ContactPage() {
                                     <FormLabel>Subject</FormLabel>
                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
-                                        <SelectTrigger>
+                                        <SelectTrigger className="cursor-target">
                                         <SelectValue placeholder="Select a subject" />
                                         </SelectTrigger>
                                     </FormControl>
@@ -217,7 +217,7 @@ export default function ContactPage() {
                                 <li key={index} className="flex items-center gap-4 text-muted-foreground">
                                     <div className="text-primary">{item.icon}</div>
                                     {item.href ? (
-                                        <a href={item.href} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                                        <a href={item.href} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors cursor-target">
                                             {item.text}
                                         </a>
                                     ) : (
@@ -248,7 +248,7 @@ export default function ContactPage() {
                 <Accordion type="single" collapsible className="w-full max-w-3xl mx-auto">
                     {faqItems.map((faq, index) => (
                         <AccordionItem key={index} value={`item-${index+1}`}>
-                            <AccordionTrigger>{faq.question}</AccordionTrigger>
+                            <AccordionTrigger className="cursor-target">{faq.question}</AccordionTrigger>
                             <AccordionContent className="text-muted-foreground">
                                 {faq.answer}
                             </AccordionContent>
