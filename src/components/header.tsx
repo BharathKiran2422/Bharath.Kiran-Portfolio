@@ -1,25 +1,16 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
-import { Mountain } from "lucide-react"
-import { usePathname } from "next/navigation"
-
-import { cn } from "@/lib/utils"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { StaggeredMenu } from "./StaggeredMenu"
-import { useIsMobile } from "@/hooks/use-mobile"
-import { SiCodechef, SiHackerrank, SiLeetcode } from "react-icons/si"
-import { Github, Linkedin, Send } from "lucide-react"
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/resume", label: "Resume" },
-  { href: "/about", label: "About" },
-  { href: "/blog", label: "Blog" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Home", ariaLabel: "Home" },
+  { href: "/portfolio", label: "Portfolio", ariaLabel: "Portfolio" },
+  { href: "/resume", label: "Resume", ariaLabel: "Resume" },
+  { href: "/about", label: "About", ariaLabel: "About" },
+  { href: "/blog", label: "Blog", ariaLabel: "Blog" },
+  { href: "/gallery", label: "Gallery", ariaLabel: "Gallery" },
+  { href: "/contact", label: "Contact", ariaLabel: "Contact" },
 ]
 
 const socialItems = [
@@ -33,41 +24,8 @@ const socialItems = [
 
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = React.useState(false)
-  const pathname = usePathname()
-  const isMobile = useIsMobile()
-
-  React.useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  const NavLinksComponent = () => (
-    <nav className={cn("hidden md:flex items-center gap-1")}>
-      {navLinks.map((link) => (
-        <Link
-          key={link.href}
-          href={link.href}
-          className={cn(
-            "relative px-3 py-2 text-base font-medium transition-colors hover:text-primary",
-            pathname === link.href ? "text-primary" : "text-muted-foreground"
-          )}
-        >
-          {link.label}
-          {pathname === link.href && (
-            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-4 bg-primary rounded-full" />
-          )}
-        </Link>
-      ))}
-    </nav>
-  )
-
-  if (isMobile) {
-    return (
-      <div style={{ background: '#1a1a1a' }}>
+  return (
+      <div style={{ background: 'transparent', position: 'relative', zIndex: 1000 }}>
          <StaggeredMenu
             position="right"
             items={navLinks}
@@ -79,32 +37,8 @@ export default function Header() {
             changeMenuColorOnOpen={true}
             colors={['#8A2BE2', '#4B0082', '#483D8B', '#6A5ACD']}
             accentColor="hsl(var(--primary))"
-            onMenuOpen={() => console.log('Menu opened')}
-            onMenuClose={() => console.log('Menu closed')}
+            logoUrl="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23A020F0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m8 3 4 8 5-5 5 15H2L8 3z'/%3e%3c/svg%3e"
           />
       </div>
-    );
-  }
-
-  return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 w-full transition-all",
-        isScrolled ? "border-b border-white/10 bg-background/50 backdrop-blur-lg" : ""
-      )}
-    >
-      <div className="container flex h-20 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center gap-2 font-headline text-xl font-bold">
-          <Mountain className="h-7 w-7 text-primary" />
-          <span className="text-2xl">BK</span>
-        </Link>
-
-        <NavLinksComponent />
-        
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-        </div>
-      </div>
-    </header>
-  )
+  );
 }
