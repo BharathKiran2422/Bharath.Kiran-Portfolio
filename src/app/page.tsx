@@ -99,7 +99,7 @@ export default function Home() {
   return (
     <main className="relative flex-grow">
       <AnimatedOrbs />
-      <section id="home" className="container mx-auto min-h-[calc(100vh-80px)] grid grid-cols-1 lg:grid-cols-2 items-center gap-12 px-4 md:px-6">
+      <section id="home" className="container mx-auto min-h-[calc(100vh-80px)] grid grid-cols-1 lg:grid-cols-2 items-center gap-12 px-4 md:px-6 pt-20">
         <motion.div 
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}

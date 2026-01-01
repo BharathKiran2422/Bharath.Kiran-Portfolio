@@ -369,3 +369,22 @@
     pointer-events: none;
   }
 }
+
+.sm-close-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: hsl(var(--foreground));
+  z-index: 1200;
+  opacity: 0.75;
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.sm-close-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
