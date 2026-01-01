@@ -49,6 +49,9 @@ const education = [
         duration: '2021 – 2025',
         grade: 'CGPA: 7.4 / 10',
         percentage: 'Percentage (approx.): 70.3%',
+        achievements: [
+            { name: 'Leadership List 2021-25', icon: <HeartHandshake className="h-3 w-3" /> }
+        ]
     },
     {
         degree: 'Intermediate - MPC',
@@ -223,6 +226,16 @@ const ResumePage = () => {
                                         </div>
                                     </div>
                                 </div>
+                                {edu.achievements && (
+                                    <div className="flex flex-col gap-2">
+                                        {edu.achievements.map((ach, i) => (
+                                            <Badge key={i} variant="outline" className="border-yellow-500/30 bg-yellow-500/10 text-yellow-300 flex items-center gap-1">
+                                                {ach.icon}
+                                                {ach.name}
+                                            </Badge>
+                                        ))}
+                                    </div>
+                                )}
                             </CardHeader>
                             <CardContent className="flex justify-between items-center text-sm">
                                 <Badge variant="secondary">{edu.grade}</Badge>
@@ -356,4 +369,5 @@ const ResumePage = () => {
 
 export default ResumePage;
 
+    
     
