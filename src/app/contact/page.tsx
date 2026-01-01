@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -107,12 +108,7 @@ export default function ContactPage() {
     };
 
     return (
-        <motion.main
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="container mx-auto px-4 md:px-6 py-16 md:py-24 flex-grow"
-        >
+        <div className="container mx-auto px-4 md:px-6 py-16 md:py-24">
             <div className="text-center mb-12">
                 <p className="font-headline text-lg font-medium text-primary">Contact Me</p>
                 <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-bold font-headline tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
@@ -125,7 +121,7 @@ export default function ContactPage() {
 
             <div className="grid md:grid-cols-5 gap-12">
                 <motion.div
-                    variants={itemVariants} initial="hidden" animate="visible"
+                    variants={itemVariants}
                     className="md:col-span-3 rounded-xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
                 >
                     <div className="flex items-center gap-3 mb-6">
@@ -207,7 +203,7 @@ export default function ContactPage() {
                 </motion.div>
 
                 <motion.div
-                     variants={itemVariants} initial="hidden" animate="visible"
+                     variants={itemVariants}
                     className="md:col-span-2 space-y-8"
                 >
                     <div className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
@@ -257,6 +253,6 @@ export default function ContactPage() {
                 </Accordion>
             </motion.div>
 
-        </motion.main>
+        </div>
     );
 }

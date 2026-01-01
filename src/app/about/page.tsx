@@ -101,13 +101,7 @@ const AboutPage = () => {
     };
 
   return (
-    <div className="flex-grow">
-      <motion.main 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 md:px-6 py-16 md:py-24"
-      >
+    <div className="container mx-auto px-4 md:px-6 py-16 md:py-24">
         {/* Section 1: Introduction */}
         <div className="grid md:grid-cols-5 gap-12 items-center">
           <motion.div 
@@ -162,7 +156,7 @@ const AboutPage = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="group relative rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:-translate-y-2 cursor-target"
+                className="group relative rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:-translate-y-2 cursor-target shadow-lg hover:shadow-primary/20"
               >
                 <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative">
@@ -191,7 +185,7 @@ const AboutPage = () => {
               <motion.div 
                 key={index}
                 variants={itemVariants}
-                className="flex flex-col items-center text-center rounded-xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm cursor-target"
+                className="flex flex-col items-center text-center rounded-xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm cursor-target shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-transform"
               >
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
                     {principle.icon}
@@ -221,7 +215,6 @@ const AboutPage = () => {
             </Button>
           </div>
         </motion.div>
-      </motion.main>
     </div>
   );
 };

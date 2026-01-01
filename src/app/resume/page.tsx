@@ -120,13 +120,7 @@ const ResumePage = () => {
     };
 
   return (
-    <div className="flex-grow">
-      <motion.main 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 md:px-6 py-16 md:py-24"
-      >
+    <div className="container mx-auto px-4 md:px-6 py-16 md:py-24">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
             <div>
                 <p className="font-headline text-lg font-medium text-primary">My Resume</p>
@@ -162,7 +156,7 @@ const ResumePage = () => {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.3 }}
-                  className="relative mb-12 cursor-target"
+                  className="relative mb-12 cursor-target transition-all duration-300 hover:bg-white/5 p-4 rounded-lg"
                 >
                   <div className="absolute -left-10 top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary ring-8 ring-background" />
                   <p className="text-sm font-semibold text-primary">{item.date}</p>
@@ -185,8 +179,8 @@ const ResumePage = () => {
           </TabsContent>
 
           <TabsContent value="education" className="mt-8">
-             <motion.div variants={containerVariants} initial="hidden" animate="visible">
-                <Card className="bg-white/5 border-white/10 cursor-target">
+             <motion.div variants={itemVariants} initial="hidden" animate="visible">
+                <Card className="bg-white/5 border-white/10 cursor-target shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-transform">
                     <CardHeader>
                         <div className="flex justify-between items-start">
                             <div>
@@ -279,7 +273,7 @@ const ResumePage = () => {
             >
                 {certifications.map((cert, index) => (
                     <motion.div key={index} variants={itemVariants}>
-                        <Card className="bg-white/5 border-white/10 group h-full flex flex-col cursor-target">
+                        <Card className="bg-white/5 border-white/10 group h-full flex flex-col cursor-target shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-transform">
                             <CardHeader className="flex-row items-center gap-4">
                                 <div className="p-3 rounded-lg bg-primary/10 text-primary">
                                     <Award className="h-8 w-8" />
@@ -305,7 +299,7 @@ const ResumePage = () => {
           </TabsContent>
 
           <TabsContent value="profile" className="mt-8">
-            <motion.div variants={containerVariants} initial="hidden" animate="visible">
+            <motion.div variants={itemVariants} initial="hidden" animate="visible">
                 <Card className="bg-white/5 border-white/10">
                     <CardHeader>
                         <CardTitle className="font-headline text-2xl">Professional Profile</CardTitle>
@@ -330,7 +324,7 @@ const ResumePage = () => {
                                     Download Resume
                                 </Link>
                             </Button>
-                            <Button variant="outline" asChild className="hover:bg-primary/10 hover:text-primary transition-colors cursor-target">
+                            <Button variant="outline" asChild className="hover:bg-primary/10 hover:text-primary transition-colors cursor-target hover:scale-105">
                                 <Link href="https://www.linkedin.com/in/bharath-kiran-obilisetty-289b1022b" target="_blank">
                                     <User className="mr-2 h-4 w-4" />
                                     LinkedIn Profile
@@ -343,7 +337,6 @@ const ResumePage = () => {
           </TabsContent>
 
         </Tabs>
-      </motion.main>
     </div>
   );
 };

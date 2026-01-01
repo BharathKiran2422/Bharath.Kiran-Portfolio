@@ -113,13 +113,7 @@ const PortfolioPage = () => {
     };
 
   return (
-    <div className="flex-grow">
-      <motion.main
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 md:px-6 py-16 md:py-24"
-      >
+    <div className="container mx-auto px-4 md:px-6 py-16 md:py-24">
         <div className="text-center mb-12">
           <p className="font-headline text-lg font-medium text-primary">Featured Projects</p>
           <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-bold font-headline tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
@@ -133,7 +127,7 @@ const PortfolioPage = () => {
                     key={filter}
                     variant={activeFilter === filter ? 'default' : 'outline'}
                     onClick={() => setActiveFilter(filter)}
-                    className="transition-all cursor-target"
+                    className="transition-all cursor-target hover:scale-105"
                 >
                     {filter}
                 </Button>
@@ -150,7 +144,7 @@ const PortfolioPage = () => {
                 <motion.div
                     key={project.title}
                     variants={itemVariants}
-                    className={`group relative rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/50 hover:-translate-y-2 cursor-target
+                    className={`group relative rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/50 hover:-translate-y-2 cursor-target shadow-lg hover:shadow-primary/20
                         ${project.featured ? 'md:col-span-2' : ''}
                     `}
                 >
@@ -177,21 +171,21 @@ const PortfolioPage = () => {
                            </div>
                            <div className="flex items-center gap-4">
                                {project.links.live && (
-                                   <Button size="sm" asChild className="button-gradient-primary cursor-target">
+                                   <Button size="sm" asChild className="button-gradient-primary cursor-target hover:scale-105 transition-transform">
                                        <Link href={project.links.live} target="_blank">
                                            <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
                                        </Link>
                                    </Button>
                                )}
                                {project.links.github && (
-                                    <Button size="sm" variant="outline" asChild className="cursor-target">
+                                    <Button size="sm" variant="outline" asChild className="cursor-target hover:scale-105 transition-transform">
                                        <Link href={project.links.github} target="_blank">
                                            <Github className="mr-2 h-4 w-4" /> GitHub
                                        </Link>
                                    </Button>
                                )}
                                 {project.links.caseStudy && (
-                                   <Button size="sm" variant="link" asChild className="cursor-target">
+                                   <Button size="sm" variant="link" asChild className="cursor-target hover:scale-105 transition-transform">
                                        <Link href={project.links.caseStudy} target="_blank">
                                             Case Study
                                        </Link>
@@ -209,8 +203,6 @@ const PortfolioPage = () => {
                 <p className="text-muted-foreground text-lg">No projects found in this category yet. Check back soon!</p>
             </motion.div>
         )}
-
-      </motion.main>
     </div>
   );
 };

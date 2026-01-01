@@ -48,9 +48,10 @@ const GalleryPage = () => {
     }, [activeFilter]);
 
     const openLightbox = useCallback((index: number) => {
-        setSelectedIndex(index);
+        const globalIndex = photosData.findIndex(p => p.src === filteredPhotos[index].src);
+        setSelectedIndex(globalIndex);
         setLightboxOpen(true);
-    }, []);
+    }, [filteredPhotos]);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -66,13 +67,8 @@ const GalleryPage = () => {
     };
 
   return (
-    <div className="flex-grow">
-      <motion.main
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 md:px-6 py-16 md:py-24"
-      >
+    <>
+      <div className="container mx-auto px-4 md:px-6 py-16 md:py-24">
         <div className="text-center mb-12">
           <p className="font-headline text-lg font-medium text-primary">My Gallery</p>
           <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-bold font-headline tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
@@ -89,7 +85,7 @@ const GalleryPage = () => {
                     key={filter}
                     variant={activeFilter === filter ? 'default' : 'outline'}
                     onClick={() => setActiveFilter(filter)}
-                    className="transition-all cursor-target"
+                    className="transition-all cursor-target hover:scale-105"
                 >
                     {filter}
                 </Button>
@@ -106,7 +102,7 @@ const GalleryPage = () => {
                 <motion.div
                     key={photo.src}
                     variants={itemVariants}
-                    className="break-inside-avoid group relative rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm cursor-pointer cursor-target"
+                    className="break-inside-avoid group relative rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm cursor-pointer cursor-target shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-transform"
                     onClick={() => openLightbox(index)}
                 >
                     <Image 
@@ -132,16 +128,16 @@ const GalleryPage = () => {
             </motion.div>
         )}
 
-      </motion.main>
+      </div>
       
       <Lightbox
           open={lightboxOpen}
           onOpenChange={setLightboxOpen}
-          images={filteredPhotos}
+          images={photosData}
           selectedIndex={selectedIndex}
           setSelectedIndex={setSelectedIndex}
       />
-    </div>
+    </>
   );
 };
 
