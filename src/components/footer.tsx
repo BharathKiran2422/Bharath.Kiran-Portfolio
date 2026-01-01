@@ -21,7 +21,7 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           <div className="flex items-center gap-2 cursor-target">
             <Mountain className="h-6 w-6 text-primary" />
-            <span className="font-headline text-lg font-bold">Bharath Kiran</span>
+            <span className="font-headline text-lg font-bold">BK</span>
           </div>
           <p className="text-sm text-muted-foreground">
             &copy; {currentYear} Bharath Kiran Obilisetty. All rights reserved.
