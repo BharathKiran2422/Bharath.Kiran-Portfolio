@@ -4,17 +4,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Github, Linkedin, Send, Code, Rocket, Layers, GitBranch } from 'lucide-react';
+import { Github, Linkedin, Send, Calendar, Rocket, Bug, Flame, Activity } from 'lucide-react';
 import Link from 'next/link';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { SiLeetcode, SiCodechef, SiHackerrank } from 'react-icons/si';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+
 
 const roles = ["Full-Stack Developer", "AI Enthusiast"];
 const stats = [
-    { value: "300+", label: "LeetCode Solved", icon: <Code className="h-8 w-8 text-primary" /> },
-    { value: "5+", label: "Projects Completed", icon: <Rocket className="h-8 w-8 text-primary" /> },
-    { value: "8+", label: "Technologies Mastered", icon: <Layers className="h-8 w-8 text-primary" /> },
-    { value: "240+", label: "GitHub Contributions", icon: <GitBranch className="h-8 w-8 text-primary" /> },
+    { value: "3+", label: "Years Coding", icon: <Calendar className="h-8 w-8 text-primary" />, detail: "Since 2021" },
+    { value: "200+", label: "Bugs Squashed", icon: <Bug className="h-8 w-8 text-primary" />, detail: "Across multiple projects" },
+    { value: "3+", label: "Live Websites", icon: <Rocket className="h-8 w-8 text-primary" />, detail: "Production-ready applications" },
+    { value: "365+", label: "Days Active", icon: <Activity className="h-8 w-8 text-primary" />, detail: "GitHub contributions in 2024" },
 ];
 
 const socialLinks = [
@@ -219,22 +221,34 @@ export default function Home() {
       </section>
 
       <section className="container mx-auto px-4 md:px-6 py-24">
-         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-          {stats.map((stat, index) => (
-            <motion.div 
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group flex flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300 cursor-target shadow-lg hover:shadow-primary/20"
-            >
-              {stat.icon}
-              <p className="font-headline text-4xl font-bold text-white">{stat.value}</p>
-              <p className="text-sm text-center text-muted-foreground">{stat.label}</p>
-            </motion.div>
-          ))}
-        </div>
+        <TooltipProvider>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+            {stats.map((stat, index) => (
+                <motion.div 
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                >
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <div
+                                className="group flex flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300 cursor-target shadow-lg hover:shadow-primary/20"
+                            >
+                                {stat.icon}
+                                <p className="font-headline text-4xl font-bold text-white">{stat.value}</p>
+                                <p className="text-sm text-center text-muted-foreground">{stat.label}</p>
+                            </div>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>{stat.detail}</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </motion.div>
+            ))}
+            </div>
+        </TooltipProvider>
       </section>
     </>
   );
