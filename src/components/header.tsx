@@ -2,13 +2,15 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { Menu, Mountain } from "lucide-react"
+import { Mountain } from "lucide-react"
 import { usePathname } from "next/navigation"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { StaggeredMenu } from "./StaggeredMenu"
+import { useIsMobile } from "@/hooks/use-mobile"
+import { SiCodechef, SiHackerrank, SiLeetcode } from "react-icons/si"
+import { Github, Linkedin, Send } from "lucide-react"
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -20,10 +22,20 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ]
 
+const socialItems = [
+  { label: 'GitHub', link: "https://github.com/BharathKiran2422" },
+  { label: 'LinkedIn', link: "https://www.linkedin.com/in/bharath-kiran-obilisetty-289b1022b" },
+  { label: 'HackerRank', link: "https://www.hackerrank.com/profile/bharathkiran2422" },
+  { label: 'LeetCode', link: "https://leetcode.com/BharathKiran2422/" },
+  { label: 'CodeChef', link: "https://www.codechef.com/users/bharath_kiran" },
+  { label: 'Email', link: "mailto:bharathkiranobilisetty@gmail.com" },
+]
+
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
   const pathname = usePathname()
+  const isMobile = useIsMobile()
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -33,23 +45,46 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const NavLinksComponent = ({ className }: { className?: string }) => (
-    <nav className={cn("flex items-center gap-4 lg:gap-6", className)}>
+  const NavLinksComponent = () => (
+    <nav className={cn("hidden md:flex items-center gap-1")}>
       {navLinks.map((link) => (
         <Link
           key={link.href}
           href={link.href}
           className={cn(
-            "text-base font-medium transition-colors hover:text-primary",
+            "relative px-3 py-2 text-base font-medium transition-colors hover:text-primary",
             pathname === link.href ? "text-primary" : "text-muted-foreground"
           )}
-          onClick={() => setMobileMenuOpen(false)}
         >
           {link.label}
+          {pathname === link.href && (
+            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-4 bg-primary rounded-full" />
+          )}
         </Link>
       ))}
     </nav>
   )
+
+  if (isMobile) {
+    return (
+      <div style={{ background: '#1a1a1a' }}>
+         <StaggeredMenu
+            position="right"
+            items={navLinks}
+            socialItems={socialItems}
+            displaySocials={true}
+            displayItemNumbering={true}
+            menuButtonColor="#fff"
+            openMenuButtonColor="#000"
+            changeMenuColorOnOpen={true}
+            colors={['#8A2BE2', '#4B0082', '#483D8B', '#6A5ACD']}
+            accentColor="hsl(var(--primary))"
+            onMenuOpen={() => console.log('Menu opened')}
+            onMenuClose={() => console.log('Menu closed')}
+          />
+      </div>
+    );
+  }
 
   return (
     <header
@@ -64,27 +99,10 @@ export default function Header() {
           <span className="text-2xl">BK</span>
         </Link>
 
-        <div className="hidden md:flex">
-          <NavLinksComponent />
-        </div>
+        <NavLinksComponent />
         
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <div className="md:hidden">
-            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Menu className="h-6 w-6" />
-                  <span className="sr-only">Toggle navigation menu</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="bg-background/80 backdrop-blur-lg">
-                <div className="flex flex-col items-center justify-center h-full gap-8">
-                  <NavLinksComponent className="flex-col gap-8" />
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
         </div>
       </div>
     </header>
