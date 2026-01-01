@@ -31,7 +31,7 @@ export default function Header() {
   const menuItems = navLinks.map(navLink => ({
       ...navLink,
       linkComponent: (
-        <Link href={navLink.href} className="sm-panel-item" aria-label={navLink.ariaLabel}>
+        <Link href={navLink.href} className="sm-panel-item cursor-target" aria-label={navLink.ariaLabel}>
             <span className="sm-panel-itemLabel">{navLink.label}</span>
         </Link>
       )
@@ -50,7 +50,7 @@ export default function Header() {
       colors={['hsl(var(--background))', 'hsl(var(--background))', 'hsl(var(--background))', 'hsl(var(--background))']}
       accentColor="hsl(var(--primary))"
       logoComponent={
-        <Link href="/" className="flex items-center gap-2 font-bold text-white font-headline text-lg">
+        <Link href="/" className="flex items-center gap-2 font-bold text-white font-headline text-lg cursor-target">
           <Mountain className="h-6 w-6 text-primary" />
           <span>BK</span>
         </Link>

@@ -373,7 +373,7 @@ export const StaggeredMenu = ({
         </div>
         <button
           ref={toggleBtnRef}
-          className="sm-toggle"
+          className="sm-toggle cursor-target"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           aria-controls="staggered-menu-panel"
@@ -397,7 +397,7 @@ export const StaggeredMenu = ({
       </header>
 
       <aside id="staggered-menu-panel" ref={panelRef} className="staggered-menu-panel" aria-hidden={!open}>
-         <button onClick={closeMenu} className='sm-close-btn'>
+         <button onClick={closeMenu} className='sm-close-btn cursor-target'>
             <X />
         </button>
         <div className="sm-panel-inner">
@@ -428,7 +428,7 @@ export const StaggeredMenu = ({
               <ul className="sm-socials-list" role="list">
                 {socialItems.map((s, i) => (
                   <li key={s.label + i} className="sm-socials-item">
-                    <a href={s.link} target="_blank" rel="noopener noreferrer" className="sm-socials-link" aria-label={s.label}>
+                    <a href={s.link} target="_blank" rel="noopener noreferrer" className="sm-socials-link cursor-target" aria-label={s.label}>
                       {s.icon}
                     </a>
                   </li>
