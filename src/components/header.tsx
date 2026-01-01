@@ -4,7 +4,7 @@
 import * as React from "react"
 import { StaggeredMenu } from "./StaggeredMenu"
 import Link from "next/link"
-import { Github, Linkedin, Send } from "lucide-react"
+import { Github, Linkedin, Mountain, Send } from "lucide-react"
 import { SiCodechef, SiHackerrank, SiLeetcode } from "react-icons/si"
 
 const navLinks = [
@@ -38,20 +38,23 @@ export default function Header() {
   }));
     
   return (
-      <div style={{ background: 'transparent', position: 'relative', zIndex: 1000 }}>
-         <StaggeredMenu
-            position="right"
-            items={menuItems}
-            socialItems={socialItems}
-            displaySocials={true}
-            displayItemNumbering={true}
-            menuButtonColor="#fff"
-            openMenuButtonColor="#fff"
-            changeMenuColorOnOpen={true}
-            colors={['hsl(var(--background))', 'hsl(var(--background))', 'hsl(var(--background))', 'hsl(var(--background))']}
-            accentColor="hsl(var(--primary))"
-            logoUrl="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='hsl(var(--primary))' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m8 3 4 8 5-5 5 15H2L8 3z'/%3e%3c/svg%3e"
-          />
-      </div>
+    <StaggeredMenu
+      position="right"
+      items={menuItems}
+      socialItems={socialItems}
+      displaySocials={true}
+      displayItemNumbering={true}
+      menuButtonColor="#fff"
+      openMenuButtonColor="#fff"
+      changeMenuColorOnOpen={true}
+      colors={['hsl(var(--background))', 'hsl(var(--background))', 'hsl(var(--background))', 'hsl(var(--background))']}
+      accentColor="hsl(var(--primary))"
+      logoComponent={
+        <Link href="/" className="flex items-center gap-2 font-bold text-white font-headline text-lg">
+          <Mountain className="h-6 w-6 text-primary" />
+          <span>BK</span>
+        </Link>
+      }
+    />
   );
 }

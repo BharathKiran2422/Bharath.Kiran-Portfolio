@@ -3,6 +3,7 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import './StaggeredMenu.css';
+import { X } from 'lucide-react';
 
 export const StaggeredMenu = ({
   position = 'right',
@@ -12,12 +13,12 @@ export const StaggeredMenu = ({
   displaySocials = true,
   displayItemNumbering = true,
   className,
-  logoUrl = '/src/assets/logos/reactbits-gh-white.svg',
+  logoComponent,
   menuButtonColor = '#fff',
   openMenuButtonColor = '#fff',
   accentColor = '#5227FF',
   changeMenuColorOnOpen = true,
-  isFixed = false,
+  isFixed = true,
   closeOnClickAway = true,
   onMenuOpen,
   onMenuClose
@@ -250,7 +251,7 @@ export const StaggeredMenu = ({
         const targetColor = opening ? openMenuButtonColor : menuButtonColor;
         colorTweenRef.current = gsap.to(btn, {
           color: targetColor,
-          delay: 0.18,
+          delay: 0,
           duration: 0.3,
           ease: 'power2.out'
         });
@@ -368,14 +369,7 @@ export const StaggeredMenu = ({
       </div>
       <header className="staggered-menu-header" aria-label="Main navigation header">
         <div className="sm-logo" aria-label="Logo">
-          <img
-            src={logoUrl || '/src/assets/logos/reactbits-gh-white.svg'}
-            alt="Logo"
-            className="sm-logo-img"
-            draggable={false}
-            width={110}
-            height={24}
-          />
+            {logoComponent}
         </div>
         <button
           ref={toggleBtnRef}
@@ -403,6 +397,9 @@ export const StaggeredMenu = ({
       </header>
 
       <aside id="staggered-menu-panel" ref={panelRef} className="staggered-menu-panel" aria-hidden={!open}>
+         <button onClick={closeMenu} className='sm-close-btn'>
+            <X />
+        </button>
         <div className="sm-panel-inner">
           <ul className="sm-panel-list" role="list" data-numbering={displayItemNumbering || undefined}>
             {items && items.length ? (

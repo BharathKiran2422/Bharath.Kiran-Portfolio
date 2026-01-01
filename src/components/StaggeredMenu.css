@@ -382,7 +382,18 @@
   z-index: 1200;
   opacity: 0.75;
   transition: opacity .25s ease, transform .25s ease;
+  display: none;
 }
+
+@media (min-width: 1024px) {
+    .sm-close-btn {
+        display: block;
+    }
+    .staggered-menu-wrapper[data-open] .sm-toggle {
+        display: none;
+    }
+}
+
 
 .sm-close-btn:hover {
   opacity: 1;
