@@ -236,10 +236,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-      
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <ArrowDown className="h-6 w-6 text-white/50 animate-bounce" />
-      </div>
     </main>
   );
 }
