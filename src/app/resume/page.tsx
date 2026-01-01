@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { SiPython, SiJavascript, SiReact, SiHtml5, SiCss3, SiTailwindcss, SiNodedotjs, SiExpress, SiMysql, SiPostgresql, SiMongodb, SiFirebase, SiGit, SiGithub, SiPostman } from 'react-icons/si';
+import { SiPython, SiJavascript, SiReact, SiHtml5, SiCss3, SiTailwindcss, SiNodedotjs, SiExpress, SiMysql, SiPostgresql, SiMongodb, SiFirebase, SiGit, SiGithub, SiPostman, SiSqlalchemy } from 'react-icons/si';
 import { FaJava } from "react-icons/fa";
 
 const experience = [
@@ -40,15 +40,35 @@ const experience = [
   },
 ];
 
-const education = {
-  degree: 'Bachelor of Technology in Computer Science',
-  institution: 'SRM University AP',
-  logo: '/srm-logo.png',
-  duration: '2021 - 2025',
-  gpa: '8.5/10',
-  courses: ['Data Structures', 'Algorithms', 'Database Management', 'Web Technologies', 'Machine Learning'],
-  achievement: "Dean's List 2023",
-};
+const education = [
+    {
+        degree: 'B.Tech – Computer Science & Engineering',
+        institution: 'Andhra Loyola Institute of Engineering and Technology, JNTUK',
+        location: 'Vijayawada',
+        logo: '/aliet.png',
+        duration: '2021 – 2025',
+        grade: 'CGPA: 7.4 / 10',
+        percentage: 'Percentage (approx.): 70.3%',
+    },
+    {
+        degree: 'Intermediate - MPC',
+        institution: 'Sarada Junior College',
+        location: 'Vijayawada',
+        logo: '/sarada.png',
+        duration: '2019 – 2021',
+        grade: 'Marks: 770 / 1000',
+        percentage: 'Percentage: 77%',
+    },
+    {
+        degree: 'Secondary School - SSC',
+        institution: 'St. John’s E.M. High School',
+        location: 'Vijayawada',
+        logo: '/st.johns.png',
+        duration: '2019',
+        grade: 'GPA: 8.8 / 10',
+        percentage: 'Percentage (approx.): 83.6%',
+    },
+];
 
 const techSkills = [
     { name: 'Python', icon: <SiPython className="h-10 w-10 text-blue-400" /> },
@@ -62,7 +82,6 @@ const techSkills = [
     { name: 'HTML5', icon: <SiHtml5 className="h-10 w-10 text-orange-600" /> },
     { name: 'CSS3', icon: <SiCss3 className="h-10 w-10 text-blue-600" /> },
     { name: 'JavaScript', icon: <SiJavascript className="h-10 w-10 text-yellow-400" /> },
-    { name: 'Postman', icon: <SiPostman className="h-10 w-10 text-orange-500" /> },
 ];
 
 const softSkills = [
@@ -177,39 +196,41 @@ const ResumePage = () => {
           </TabsContent>
 
           <TabsContent value="education" className="mt-8">
-             <motion.div variants={itemVariants} initial="hidden" animate="visible">
-                <Card className="bg-white/5 border-white/10 cursor-target shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-transform">
-                    <CardHeader>
-                        <div className="flex justify-between items-start">
-                            <div>
-                                <p className="text-primary font-semibold">{education.degree}</p>
-                                <CardTitle className="font-headline text-2xl mt-1">{education.institution}</CardTitle>
-                                <div className="flex items-center gap-4 text-muted-foreground mt-2 text-sm">
-                                    <div className="flex items-center gap-2">
-                                        <Calendar className="h-4 w-4" />
-                                        <span>{education.duration}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <GraduationCap className="h-4 w-4" />
-                                        <span>CGPA: {education.gpa}</span>
+             <motion.div 
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="space-y-8"
+              >
+                {education.map((edu, index) => (
+                    <motion.div key={index} variants={itemVariants}>
+                        <Card className="bg-white/5 border-white/10 cursor-target shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-transform">
+                            <CardHeader className="flex flex-row items-center gap-4">
+                                <div className="p-2 bg-white/10 rounded-lg">
+                                    <Image src={edu.logo} alt={`${edu.institution} logo`} width={48} height={48} className="h-12 w-12 object-contain"/>
+                                </div>
+                                <div className="flex-1">
+                                    <p className="text-primary font-semibold">{edu.degree}</p>
+                                    <CardTitle className="font-headline text-xl mt-1">{edu.institution}</CardTitle>
+                                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-muted-foreground mt-2 text-sm">
+                                        <div className="flex items-center gap-2">
+                                            <MapPin className="h-4 w-4" />
+                                            <span>{edu.location}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <Calendar className="h-4 w-4" />
+                                            <span>{edu.duration}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="flex items-center gap-2 text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 px-3 py-1 rounded-full text-sm">
-                                <Star className="h-4 w-4" />
-                                {education.achievement}
-                            </div>
-                        </div>
-                    </CardHeader>
-                    <CardContent>
-                        <h4 className="font-semibold text-white mb-2">Relevant Coursework:</h4>
-                        <div className="flex flex-wrap gap-2">
-                            {education.courses.map(course => (
-                                <Badge key={course} variant="secondary" className="bg-primary/10 text-primary border-primary/20">{course}</Badge>
-                            ))}
-                        </div>
-                    </CardContent>
-                </Card>
+                            </CardHeader>
+                            <CardContent className="flex justify-between items-center text-sm">
+                                <Badge variant="secondary">{edu.grade}</Badge>
+                                <Badge variant="outline">{edu.percentage}</Badge>
+                            </CardContent>
+                        </Card>
+                    </motion.div>
+                ))}
              </motion.div>
           </TabsContent>
 
