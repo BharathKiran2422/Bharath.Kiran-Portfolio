@@ -17,7 +17,7 @@
 }
 
 .staggered-menu-header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -59,6 +59,13 @@
   font-weight: 500;
   line-height: 1;
   overflow: visible;
+}
+
+.staggered-menu-wrapper[data-open] .staggered-menu-header .sm-toggle {
+    position: fixed;
+    top: 2em;
+    right: 2em;
+    z-index: 1001;
 }
 
 .sm-toggle:focus-visible {
@@ -340,8 +347,9 @@
     left: 0;
     right: 0;
   }
-  .staggered-menu-wrapper[data-open] .sm-logo-img {
-    filter: invert(1);
+  .staggered-menu-wrapper[data-open] .sm-logo {
+    opacity: 0;
+    pointer-events: none;
   }
 }
 
@@ -356,7 +364,8 @@
     left: 0;
     right: 0;
   }
-  .staggered-menu-wrapper[data-open] .sm-logo-img {
-    filter: invert(1);
+  .staggered-menu-wrapper[data-open] .sm-logo {
+    opacity: 0;
+    pointer-events: none;
   }
 }
