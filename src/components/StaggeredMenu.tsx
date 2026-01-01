@@ -88,7 +88,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       if (toggleBtnRef.current) gsap.set(toggleBtnRef.current, { color: menuButtonColor });
     });
     return () => ctx.revert();
-  }, [menuButtonColor, position]);
+  }, [menuButtonColor, position, changeMenuColorOnOpen, openMenuButtonColor]);
 
   const buildOpenTimeline = useCallback(() => {
     const panel = panelRef.current;
@@ -250,7 +250,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     });
   }, [position]);
 
-  const animateIcon = useCallback(opening => {
+  const animateIcon = useCallback((opening: boolean) => {
     const icon = iconRef.current;
     if (!icon) return;
     spinTweenRef.current?.kill();
@@ -262,7 +262,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   }, []);
 
   const animateColor = useCallback(
-    opening => {
+    (opening: boolean) => {
       const btn = toggleBtnRef.current;
       if (!btn) return;
       colorTweenRef.current?.kill();
@@ -292,7 +292,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     }
   }, [changeMenuColorOnOpen, menuButtonColor, openMenuButtonColor]);
 
-  const animateText = useCallback(opening => {
+  const animateText = useCallback((opening: boolean) => {
     const inner = textInnerRef.current;
     if (!inner) return;
     textCycleAnimRef.current?.kill();
