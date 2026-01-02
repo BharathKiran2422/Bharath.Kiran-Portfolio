@@ -126,7 +126,7 @@ export default function Home() {
             {text}<span className="animate-ping">|</span>
           </p>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            I transform complex problems into elegant solutions through clean code and thoughtful design. Specializing in React, Node.js, and modern web technologies with a growing passion for AI and data science.
+            From concept to deployment, I craft web experiences that matter. Combining React.js, Next.js, and modern frameworks with strong backend skills in Node.js and Express.js, I deliver full-stack solutions that are both beautiful and functional. Currently bridging the gap between web development and AI to create smarter applications.
           </p>
           <div className="mt-8 flex flex-wrap justify-center lg:justify-start items-center gap-4">
             <Button size="lg" asChild className="button-gradient-primary shadow-lg shadow-primary/20 hover:scale-105 transition-transform cursor-target">

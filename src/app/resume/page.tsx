@@ -99,20 +99,30 @@ const softSkills = [
 
 
 const certifications = [
-    { name: 'Google UX Design', issuer: 'Google', year: '2024', link: '#', image: placeholderImages.certGoogleUX },
-    { name: 'Google Data Analytics', issuer: 'Google', year: '2024', link: '#', image: placeholderImages.certGoogleData },
-    { name: 'Artificial Intelligence', issuer: 'Infosys', year: '2024', link: '#', image: placeholderImages.certInfosysAI },
-    { name: 'Python Essentials', issuer: 'Cisco', year: '2023', link: '#', image: placeholderImages.certCiscoPython },
-    { name: 'Cyber Security Fundamentals', issuer: 'Cisco', year: '2023', link: '#', image: placeholderImages.certCiscoCyber },
+    { name: 'JobReady Employability Skills', issuer: 'Wadhwani Foundation', year: '2024', link: 'https://web.certificate.wfglobal.org/en/certificate?certificateId=66e3346a945a80ae5140716b', image: placeholderImages.certJobReady },
+    { name: 'Google UX Design', issuer: 'Google', year: '2024', link: 'https://coursera.org/verify/professional-cert/THSUG3JBGR8G', image: placeholderImages.certGoogleUX },
+    { name: 'Google Data Analytics', issuer: 'Google', year: '2024', link: 'https://coursera.org/verify/professional-cert/TVXEYH345HJP', image: placeholderImages.certGoogleData },
+    { name: 'Computer Graphics', issuer: 'NPTEL', year: '2023', link: 'https://archive.nptel.ac.in/content/noc/NOC23/SEM2/Ecertificates/106/noc23-cs115/Course/NPTEL23CS115S4425220310036827.pdf', image: placeholderImages.certNPTEL_CG },
+    { name: 'Software Testing', issuer: 'NPTEL', year: '2024', link: 'https://archive.nptel.ac.in/content/noc/NOC24/SEM2/Ecertificates/106/noc24-cs91/Course/NPTEL24CS91S45570134303961836.pdf', image: placeholderImages.certNPTEL_ST },
+    { name: 'Compilers', issuer: 'Stanford-edX', year: '2024', link: 'https://courses.edx.org/certificates/ed36ccf3c43a4e1c8dd5672d3e11322c', image: placeholderImages.certCompilers },
 ];
 
 const resumeProfile = {
-  summary: "I'm a results-driven Computer Science student specializing in full-stack development with growing expertise in data science and AI. My diverse internship experiences have equipped me with practical skills in web development, application security, and machine learning. I thrive in collaborative environments and am passionate about creating user-centric, high-quality digital solutions. As a quick learner and creative problem-solver, I'm eager to tackle new challenges and contribute to innovative projects.",
+  summary: (
+    <>
+      <p>
+        I'm a Computer Science graduate with hands-on experience in full-stack development, specializing in React.js, Next.js, and modern JavaScript frameworks. Through internships spanning web development, application security, and data science, I've built responsive applications, conducted vulnerability assessments, and worked with data processing pipelines.
+      </p>
+      <p>
+        Skilled in both frontend and backend technologies, I focus on creating scalable, user-centric solutions with clean code and thoughtful design. I excel in collaborative environments and continuously expand my skills through practical projects and certifications. Currently exploring AI and machine learning to integrate intelligent features into web applications.
+      </p>
+    </>
+  ),
   highlights: [
-    { icon: <Zap className="h-5 w-5 text-primary" />, text: "Versatile developer with hands-on experience across the full stack." },
-    { icon: <ShieldCheck className="h-5 w-5 text-primary" />, text: "Skilled in application security and penetration testing." },
-    { icon: <Puzzle className="h-5 w-5 text-primary" />, text: "Proven problem-solver with strong algorithmic and data structure skills." },
-    { icon: <Code className="h-5 w-5 text-primary" />, text: "Passionate about leveraging AI and ML to build intelligent applications." },
+    { icon: <Code className="h-5 w-5 text-primary" />, text: "Full-stack proficiency with modern frameworks like React.js and Next.js." },
+    { icon: <Briefcase className="h-5 w-5 text-primary" />, text: "Diverse internship experience in web development, app security, and data science." },
+    { icon: <User className="h-5 w-5 text-primary" />, text: "Focused on building scalable, user-centric solutions with clean code." },
+    { icon: <BrainCircuit className="h-5 w-5 text-primary" />, text: "Actively exploring AI/ML to create intelligent, feature-rich applications." },
   ]
 };
 
