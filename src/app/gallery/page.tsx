@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, 'useState', 'useMemo', 'useCallback', 'useRef' from 'react';
+import React, { useState, useMemo, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -10,6 +10,7 @@ import placeholderImages from '@/app/lib/placeholder-images.json';
 import { Lightbox } from '@/components/lightbox';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 type PhotoCategory = 'Development' | 'Events' | 'Behind the Scenes' | 'Personal' | 'Nature';
 
