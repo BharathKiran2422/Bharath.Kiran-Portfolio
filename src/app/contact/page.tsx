@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion } from 'framer-motion';
-import { AtSign, Linkedin, MapPin, Paperclip, Phone, Send, User, ChevronDown, HelpCircle, Briefcase, MessageSquare, Users, Code, Info } from 'lucide-react';
+import { AtSign, Linkedin, MapPin, Paperclip, Phone, Send, User, ChevronDown, HelpCircle, Briefcase, MessageSquare, Users, Code, Info, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -30,25 +30,26 @@ const contactInfo = [
     { icon: <AtSign />, text: "bharathkiranobilisetty@gmail.com", href: "mailto:bharathkiranobilisetty@gmail.com" },
     { icon: <Phone />, text: "+91 8639678884", href: "tel:+918639678884" },
     { icon: <Linkedin />, text: "LinkedIn Profile", href: "https://www.linkedin.com/in/bharath-kiran-obilisetty-289b1022b" },
-    { icon: <MapPin />, text: "Vijayawada, India" },
+    { icon: <Github />, text: "GitHub Profile", href: "https://github.com/BharathKiran2422" },
+    { icon: <MapPin />, text: "Tadepalli, Andhra Pradesh, India" },
 ];
 
 const faqItems = [
     {
-        question: "What's your typical project timeline?",
-        answer: "Depending on complexity, projects range from 2-8 weeks. I'll provide a detailed timeline after understanding your requirements.",
+        question: "What is your typical project timeline?",
+        answer: "A typical project timeline ranges from 2 to 8 weeks, depending on the complexity and scope of the requirements. After our initial discussion, I will provide a detailed project plan with a clear timeline and milestones.",
     },
     {
-        question: "What are your rates?",
-        answer: "My rates vary based on project scope and complexity. Let's discuss your project and I'll provide a fair quote. Student and nonprofit discounts available.",
+        question: "What are your rates for freelance projects?",
+        answer: "My rates are project-based and depend on the scope, complexity, and technologies involved. I am happy to provide a detailed quote after we discuss your needs. I also offer special rates for non-profits and student-led projects.",
     },
     {
         question: "Do you work with clients remotely?",
-        answer: "Yes! I work with clients worldwide. Communication through video calls, Slack, and project management tools ensures a smooth workflow.",
+        answer: "Yes, I am fully equipped to work with clients worldwide. I use modern communication tools like Slack, Zoom, and project management software to ensure our collaboration is seamless and efficient, regardless of location.",
     },
     {
-        question: "What's your primary tech stack?",
-        answer: "I primarily work with React, Next.js, Node.js, and Python. For databases, I'm experienced with both SQL and NoSQL solutions like PostgreSQL and Firebase. I'm always learning and adapting to new technologies.",
+        question: "What is your primary tech stack?",
+        answer: "I specialize in the MERN stack (MongoDB, Express.js, React, Node.js) and particularly enjoy working with Next.js for its performance benefits. I am also experienced with TypeScript, Python, and various database solutions like PostgreSQL and Firebase. I am a quick learner and always adapt to the best tools for the job.",
     },
 ];
 
@@ -115,7 +116,7 @@ export default function ContactPage() {
                    Let's Build Something Amazing Together
                 </h1>
                 <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
-                    Have a project in mind? I'd love to hear about it.
+                    Have a project in mind? I'm currently available for freelance opportunities and open to full-time positions.
                 </p>
             </div>
 
@@ -129,7 +130,7 @@ export default function ContactPage() {
                             <div className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></div>
                             <div className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></div>
                         </div>
-                        <p className="text-sm text-green-400">Available for freelance projects. Usually responds within 24 hours.</p>
+                        <p className="text-sm text-green-400">Available for Web Development Projects | Open to Full-Time Opportunities</p>
                     </div>
 
                     <Form {...form}>
@@ -191,7 +192,7 @@ export default function ContactPage() {
                                     <FormItem>
                                         <FormLabel>Message</FormLabel>
                                         <FormControl>
-                                            <Textarea placeholder="Tell me about your project..." rows={5} {...field} />
+                                            <Textarea placeholder="Tell me about your project or opportunity..." rows={5} {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -224,9 +225,9 @@ export default function ContactPage() {
                         </ul>
                     </div>
                      <div className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
-                        <h3 className="font-headline text-xl font-bold text-white mb-4">Working Hours</h3>
+                        <h3 className="font-headline text-xl font-bold text-white mb-4">Response Time</h3>
                         <p className="text-muted-foreground">Mon - Fri, 9 AM - 6 PM (IST)</p>
-                        <p className="text-sm text-muted-foreground/70">Open to discussing urgent matters outside of these hours.</p>
+                        <p className="text-sm text-muted-foreground/70">Usually responds within 24 hours.</p>
                     </div>
                 </motion.div>
             </div>
