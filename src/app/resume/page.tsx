@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { SiPython, SiJavascript, SiReact, SiHtml5, SiCss3, SiTailwindcss, SiNodedotjs, SiExpress, SiMysql, SiPostgresql, SiMongodb, SiFirebase, SiGit, SiGithub, SiPostman, SiSqlalchemy } from 'react-icons/si';
 import { FaJava } from "react-icons/fa";
+import placeholderImages from '@/app/lib/placeholder-images.json';
 
 const experience = [
   {
@@ -50,7 +51,7 @@ const education = [
         grade: 'CGPA: 7.4 / 10',
         percentage: 'Percentage (approx.): 70.3%',
         achievements: [
-            { name: 'Leadership 2021-25', icon: <HeartHandshake className="h-3 w-3" /> }
+            { name: 'Leadership List 2021-25', icon: <HeartHandshake className="h-3 w-3" /> }
         ]
     },
     {
@@ -98,11 +99,11 @@ const softSkills = [
 
 
 const certifications = [
-    { name: 'Google UX Design', issuer: 'Google', year: '2024', link: '#' },
-    { name: 'Google Data Analytics', issuer: 'Google', year: '2024', link: '#' },
-    { name: 'Artificial Intelligence', issuer: 'Infosys', year: '2024', link: '#' },
-    { name: 'Python Essentials', issuer: 'Cisco', year: '2023', link: '#' },
-    { name: 'Cyber Security Fundamentals', issuer: 'Cisco', year: '2023', link: '#' },
+    { name: 'Google UX Design', issuer: 'Google', year: '2024', link: '#', image: placeholderImages.certGoogleUX },
+    { name: 'Google Data Analytics', issuer: 'Google', year: '2024', link: '#', image: placeholderImages.certGoogleData },
+    { name: 'Artificial Intelligence', issuer: 'Infosys', year: '2024', link: '#', image: placeholderImages.certInfosysAI },
+    { name: 'Python Essentials', issuer: 'Cisco', year: '2023', link: '#', image: placeholderImages.certCiscoPython },
+    { name: 'Cyber Security Fundamentals', issuer: 'Cisco', year: '2023', link: '#', image: placeholderImages.certCiscoCyber },
 ];
 
 const resumeProfile = {
@@ -295,12 +296,22 @@ const ResumePage = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
             >
                 {certifications.map((cert, index) => (
                     <motion.div key={index} variants={itemVariants}>
-                        <Card className="bg-white/5 border-white/10 group h-full flex flex-col cursor-target shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-transform">
-                            <CardHeader className="flex-row items-center gap-4">
+                        <Card className="bg-white/5 border-white/10 group h-full flex flex-col cursor-target shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-transform overflow-hidden">
+                             <div className="overflow-hidden">
+                                <Image
+                                    src={cert.image.src}
+                                    alt={cert.image.alt}
+                                    width={cert.image.width}
+                                    height={cert.image.height}
+                                    data-ai-hint={cert.image.hint}
+                                    className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105"
+                                />
+                            </div>
+                            <CardHeader className="flex-row items-center gap-4 flex-grow">
                                 <div className="p-3 rounded-lg bg-primary/10 text-primary">
                                     <Award className="h-8 w-8" />
                                 </div>
@@ -309,7 +320,7 @@ const ResumePage = () => {
                                     <p className="text-sm text-muted-foreground">{cert.issuer} - {cert.year}</p>
                                 </div>
                             </CardHeader>
-                            <CardContent className="flex-grow flex items-end justify-between">
+                            <CardContent className="flex items-end justify-between mt-auto">
                                 <Badge className="bg-green-500/10 text-green-400 border-green-500/20">
                                     <CheckCircle className="h-3 w-3 mr-1" />
                                     Verified
@@ -368,6 +379,3 @@ const ResumePage = () => {
 };
 
 export default ResumePage;
-
-    
-    

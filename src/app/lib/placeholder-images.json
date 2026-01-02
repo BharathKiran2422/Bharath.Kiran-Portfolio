@@ -130,5 +130,25 @@
   "galleryLearning2": {
     "src": "https://picsum.photos/seed/glr2/800/600", "width": 800, "height": 600,
     "alt": "Online certification displayed on a monitor", "hint": "online course"
+  },
+  "certGoogleUX": {
+    "src": "https://picsum.photos/seed/gux/800/600", "width": 800, "height": 600,
+    "alt": "Google UX Design Certificate", "hint": "certificate design"
+  },
+  "certGoogleData": {
+    "src": "https://picsum.photos/seed/gda/800/600", "width": 800, "height": 600,
+    "alt": "Google Data Analytics Certificate", "hint": "certificate analytics"
+  },
+  "certInfosysAI": {
+    "src": "https://picsum.photos/seed/iai/800/600", "width": 800, "height": 600,
+    "alt": "Infosys AI Certificate", "hint": "certificate AI"
+  },
+  "certCiscoPython": {
+    "src": "https://picsum.photos/seed/cpy/800/600", "width": 800, "height": 600,
+    "alt": "Cisco Python Essentials Certificate", "hint": "certificate python"
+  },
+  "certCiscoCyber": {
+    "src": "https://picsum.photos/seed/ccy/800/600", "width": 800, "height": 600,
+    "alt": "Cisco Cyber Security Certificate", "hint": "certificate security"
   }
 }
