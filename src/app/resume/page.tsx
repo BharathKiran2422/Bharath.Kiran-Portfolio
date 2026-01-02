@@ -352,7 +352,7 @@ const ResumePage = () => {
                         <CardTitle className="font-headline text-2xl">Professional Profile</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
-                        <p className="text-muted-foreground leading-relaxed">{resumeProfile.summary}</p>
+                        <div className="text-muted-foreground leading-relaxed space-y-4">{resumeProfile.summary}</div>
                         <div>
                             <h4 className="font-semibold text-white mb-3">Key Highlights:</h4>
                             <ul className="space-y-2">
@@ -389,3 +389,5 @@ const ResumePage = () => {
 };
 
 export default ResumePage;
+
+    
