@@ -154,45 +154,66 @@ const GalleryPage = () => {
             </div>
         </div>
 
-        <motion.div
-            layout
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="columns-2 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"
-        >
-            <AnimatePresence>
-                {filteredPhotos.slice(0, itemsToShow).map((photo, index) => (
-                    <motion.div
-                        key={photo.src}
-                        layout
-                        variants={itemVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        className="break-inside-avoid group relative rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm cursor-pointer cursor-target shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-transform"
-                        onClick={() => openLightbox(index)}
-                    >
-                        <Image 
-                            src={photo.src}
-                            alt={photo.alt}
-                            width={photo.width}
-                            height={photo.height}
-                            data-ai-hint={photo.hint}
-                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                            unoptimized
-                        />
-                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                            <Maximize className="absolute top-4 right-4 h-6 w-6 text-white opacity-80" />
-                            <h4 className="font-bold text-white text-lg">{photo.caption}</h4>
-                            <p className="text-white/80 text-sm">{photo.date}</p>
-                        </div>
-                    </motion.div>
-                ))}
-            </AnimatePresence>
-        </motion.div>
-        
-        {filteredPhotos.length === 0 && (
+        {filteredPhotos.length > 0 ? (
+            <>
+                <motion.div
+                    layout
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="columns-2 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"
+                >
+                    <AnimatePresence>
+                        {filteredPhotos.slice(0, itemsToShow).map((photo, index) => (
+                            <motion.div
+                                key={photo.src}
+                                layout
+                                variants={itemVariants}
+                                initial="hidden"
+                                animate="visible"
+                                exit="exit"
+                                className="break-inside-avoid group relative rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm cursor-pointer cursor-target shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-transform"
+                                onClick={() => openLightbox(index)}
+                            >
+                                <Image 
+                                    src={photo.src}
+                                    alt={photo.alt}
+                                    width={photo.width}
+                                    height={photo.height}
+                                    data-ai-hint={photo.hint}
+                                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                                    unoptimized
+                                />
+                                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                                    <Maximize className="absolute top-4 right-4 h-6 w-6 text-white opacity-80" />
+                                    <h4 className="font-bold text-white text-lg">{photo.caption}</h4>
+                                    <p className="text-white/80 text-sm">{photo.date}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
+                </motion.div>
+                
+                {hasMoreItems && (
+                    <div className="mt-12 text-center">
+                        <Button 
+                            size="lg"
+                            onClick={toggleExpand}
+                            className="button-gradient-primary shadow-lg shadow-primary/20 hover:scale-105 transition-transform cursor-target"
+                        >
+                            {isExpanded ? 'See Less' : `See More (${hiddenItemsCount} hidden)`}
+                            <motion.div
+                                animate={{ rotate: isExpanded ? 180 : 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="ml-2"
+                            >
+                                <ChevronDown className="h-5 w-5"/>
+                            </motion.div>
+                        </Button>
+                    </div>
+                )}
+            </>
+        ) : (
             <motion.div initial={{opacity: 0}} animate={{opacity: 1}} className="text-center py-16">
                  <Card className="max-w-md mx-auto bg-white/5 border-white/10 p-8">
                     <CardHeader>
@@ -201,29 +222,10 @@ const GalleryPage = () => {
                     </CardHeader>
                     <CardContent>
                         <p className="text-muted-foreground">There are no photos in this category yet. Check back soon for updates!</p>
-                        <Button onClick={() => handleFilterChange('All')} variant="link" className="mt-4">View All Photos</Button>
+                        <Button onClick={() => handleFilterChange('All')} variant="link" className="mt-4 cursor-target">View All Photos</Button>
                     </CardContent>
                 </Card>
             </motion.div>
-        )}
-
-        {hasMoreItems && (
-            <div className="mt-12 text-center">
-                <Button 
-                    size="lg"
-                    onClick={toggleExpand}
-                    className="button-gradient-primary shadow-lg shadow-primary/20 hover:scale-105 transition-transform cursor-target"
-                >
-                    {isExpanded ? 'See Less' : `See More (${hiddenItemsCount} hidden)`}
-                    <motion.div
-                        animate={{ rotate: isExpanded ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="ml-2"
-                    >
-                        <ChevronDown className="h-5 w-5"/>
-                    </motion.div>
-                </Button>
-            </div>
         )}
 
       </div>
@@ -261,5 +263,3 @@ function ImagePlaceholderIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default GalleryPage;
-
-    
