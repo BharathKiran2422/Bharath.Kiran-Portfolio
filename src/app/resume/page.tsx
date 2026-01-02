@@ -50,7 +50,7 @@ const education = [
         grade: 'CGPA: 7.4 / 10',
         percentage: 'Percentage (approx.): 70.3%',
         achievements: [
-            { name: 'Leadership List 2021-25', icon: <HeartHandshake className="h-3 w-3" /> }
+            { name: 'Leadership 2021-25', icon: <HeartHandshake className="h-3 w-3" /> }
         ]
     },
     {
@@ -209,7 +209,7 @@ const ResumePage = () => {
                     <motion.div key={index} variants={itemVariants}>
                         <Card className="bg-white/5 border-white/10 cursor-target shadow-lg hover:shadow-primary/20 hover:-translate-y-2 transition-transform">
                             <CardHeader className="flex flex-row items-center gap-4">
-                                <div className="p-2 bg-white/10 rounded-lg">
+                                <div className="p-2 bg-white rounded-lg">
                                     <Image src={edu.logo} alt={`${edu.institution} logo`} width={48} height={48} className="h-12 w-12 object-contain"/>
                                 </div>
                                 <div className="flex-1">
