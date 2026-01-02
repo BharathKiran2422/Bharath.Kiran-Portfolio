@@ -4,6 +4,7 @@ import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import './StaggeredMenu.css';
 import { X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 type StaggeredMenuProps = {
   position?: 'left' | 'right';
@@ -22,6 +23,7 @@ type StaggeredMenuProps = {
   closeOnClickAway?: boolean;
   onMenuOpen?: () => void;
   onMenuClose?: () => void;
+  scrolled?: boolean;
 };
 
 export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
@@ -40,7 +42,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   isFixed = true,
   closeOnClickAway = true,
   onMenuOpen,
-  onMenuClose
+  onMenuClose,
+  scrolled,
 }) => {
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);
@@ -386,7 +389,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           return arr.map((c, i) => <div key={i} className="sm-prelayer" style={{ background: c }} />);
         })()}
       </div>
-      <header className="staggered-menu-header" aria-label="Main navigation header">
+      <header className={cn("staggered-menu-header", scrolled && "scrolled")} aria-label="Main navigation header">
         <div className="sm-logo" aria-label="Logo">
             {logoComponent}
         </div>

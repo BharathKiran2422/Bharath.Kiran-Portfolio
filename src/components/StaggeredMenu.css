@@ -1,3 +1,4 @@
+
 .staggered-menu-wrapper {
   position: relative;
   width: 100%;
@@ -28,7 +29,15 @@
   background: transparent;
   pointer-events: none;
   z-index: 20;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
 }
+
+.staggered-menu-header.scrolled {
+  background-color: hsl(var(--background) / 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
 
 .staggered-menu-header > * {
   pointer-events: auto;

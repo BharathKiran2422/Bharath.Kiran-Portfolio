@@ -30,9 +30,21 @@ const socialItems = [
 
 export default function Header() {
   const [isClient, setIsClient] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
+    
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
   
   const menuItems = navLinks.map(navLink => ({
@@ -48,6 +60,7 @@ export default function Header() {
     <>
       {isClient && (
         <StaggeredMenu
+          scrolled={scrolled}
           position="right"
           items={menuItems}
           socialItems={socialItems}
