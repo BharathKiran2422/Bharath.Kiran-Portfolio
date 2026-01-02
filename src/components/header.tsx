@@ -1,7 +1,8 @@
+
 "use client"
 
 
-import * as React from "react"
+import React, { useState, useEffect } from "react"
 import { StaggeredMenu } from "./StaggeredMenu"
 import Link from "next/link"
 import { Github, Linkedin, Mountain, Send } from "lucide-react"
@@ -28,6 +29,12 @@ const socialItems = [
 
 
 export default function Header() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  
   const menuItems = navLinks.map(navLink => ({
       ...navLink,
       linkComponent: (
@@ -38,23 +45,27 @@ export default function Header() {
   }));
     
   return (
-    <StaggeredMenu
-      position="right"
-      items={menuItems}
-      socialItems={socialItems}
-      displaySocials={true}
-      displayItemNumbering={true}
-      menuButtonColor="#fff"
-      openMenuButtonColor="#fff"
-      changeMenuColorOnOpen={true}
-      colors={['hsl(var(--background))', 'hsl(var(--background))', 'hsl(var(--background))', 'hsl(var(--background))']}
-      accentColor="hsl(var(--primary))"
-      logoComponent={
-        <Link href="/" className="flex items-center gap-2 font-bold text-white font-headline text-lg cursor-target">
-          <Mountain className="h-6 w-6 text-primary" />
-          <span>BK</span>
-        </Link>
-      }
-    />
+    <>
+      {isClient && (
+        <StaggeredMenu
+          position="right"
+          items={menuItems}
+          socialItems={socialItems}
+          displaySocials={true}
+          displayItemNumbering={true}
+          menuButtonColor="#fff"
+          openMenuButtonColor="#fff"
+          changeMenuColorOnOpen={true}
+          colors={['hsl(var(--background))', 'hsl(var(--background))', 'hsl(var(--background))', 'hsl(var(--background))']}
+          accentColor="hsl(var(--primary))"
+          logoComponent={
+            <Link href="/" className="flex items-center gap-2 font-bold text-white font-headline text-lg cursor-target">
+              <Mountain className="h-6 w-6 text-primary" />
+              <span>BK</span>
+            </Link>
+          }
+        />
+      )}
+    </>
   );
 }
