@@ -166,8 +166,9 @@ const BlogPage = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </Card>
-                            </motion.div>
+                                </div>
+                            </Card>
+                        </motion.div>
                     )}
                     
                     <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{once: true}} className="grid grid-cols-1 md:grid-cols-2 gap-8">
