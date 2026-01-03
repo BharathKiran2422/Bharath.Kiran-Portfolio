@@ -53,7 +53,7 @@ const photosData: Photo[] = [
 ];
 
 const filters: ('All' | PhotoCategory)[] = ['All', 'Development', 'Events', 'Behind the Scenes', 'Personal', 'Nature'];
-const INITIAL_ITEMS = 6;
+const INITIAL_ITEMS = 12;
 
 const GalleryPage = () => {
     const [activeFilter, setActiveFilter] = useState<'All' | PhotoCategory>('All');
