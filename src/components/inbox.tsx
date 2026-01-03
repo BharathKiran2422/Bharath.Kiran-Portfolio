@@ -31,7 +31,7 @@ import { Badge } from '@/components/ui/badge';
 import { getMessages, deleteMessage, toggleMessageReadStatus, type Message } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
 import { format, parseISO } from 'date-fns';
-import { Loader2, Trash2, Eye, Mail, MoreVertical, LogOut, Inbox as InboxIcon } from 'lucide-react';
+import { Loader2, Trash2, Eye, Mail, MoreVertical, LogOut, Inbox as InboxIcon, RefreshCcw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
   Dialog,
@@ -55,6 +55,7 @@ export default function Inbox({ onLogout }: InboxProps) {
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [messageToDelete, setMessageToDelete] = useState<string | null>(null);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const { toast } = useToast();
 
@@ -73,6 +74,16 @@ export default function Inbox({ onLogout }: InboxProps) {
     }
     setLoading(false);
   };
+  
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    await fetchMessages();
+    setIsRefreshing(false);
+     toast({
+        title: 'Inbox Refreshed',
+        description: 'Your messages are up to date.',
+      });
+  }
 
   useEffect(() => {
     fetchMessages();
@@ -125,10 +136,15 @@ export default function Inbox({ onLogout }: InboxProps) {
           <h1 className="text-3xl font-bold font-headline text-white">Inbox</h1>
           <Badge variant="secondary">{unreadCount} Unread</Badge>
         </div>
-        <Button onClick={onLogout} variant="outline" className="cursor-target">
-          <LogOut className="mr-2 h-4 w-4" />
-          Logout
-        </Button>
+        <div className="flex items-center gap-2">
+            <Button onClick={handleRefresh} variant="outline" size="icon" className="cursor-target h-9 w-9">
+              <RefreshCcw className={cn("h-4 w-4", isRefreshing && "animate-spin")} />
+            </Button>
+            <Button onClick={onLogout} variant="outline" className="cursor-target">
+              <LogOut className="mr-2 h-4 w-4" />
+              Logout
+            </Button>
+        </div>
       </div>
 
       <div className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-lg overflow-hidden">
