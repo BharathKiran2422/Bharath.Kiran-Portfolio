@@ -68,12 +68,6 @@ export function Lightbox({ open, onOpenChange, images, selectedIndex, setSelecte
                         height={800}
                         className="max-w-[90vw] max-h-[80vh] object-contain rounded-lg shadow-2xl"
                     />
-                     {(currentImage.caption || currentImage.date) && (
-                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center bg-black/50 backdrop-blur-sm p-2 rounded-lg text-white">
-                            {currentImage.caption && <h4 className="font-bold">{currentImage.caption}</h4>}
-                            {currentImage.date && <p className="text-sm opacity-80">{currentImage.date}</p>}
-                        </div>
-                    )}
                 </motion.div>
             )}
         </AnimatePresence>
