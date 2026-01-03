@@ -54,6 +54,7 @@ const GalleryPage = () => {
     const galleryRef = useRef<HTMLDivElement>(null);
 
     const [activeTabIndex, setActiveTabIndex] = useState(0);
+    const [tabRefs, setTabRefs] = useState<(HTMLButtonElement | null)[]>([]);
     
     const [isLoading, setIsLoading] = useState(true);
 
@@ -119,7 +120,7 @@ const GalleryPage = () => {
 
   return (
     <>
-      <div ref={galleryRef} className="container mx-auto px-4 md:px-6 py-16 md:py-24">
+      <div ref={galleryRef} className="container mx-auto px-4 md:px-6 py-16 md:py-24 min-h-screen">
         <div className="text-center mb-12">
           <p className="font-headline text-lg font-medium text-primary">My Gallery</p>
           <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-bold font-headline tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
@@ -131,10 +132,19 @@ const GalleryPage = () => {
         </div>
 
         <div className="sticky top-20 md:top-24 z-30 bg-background/80 backdrop-blur-lg -mx-4 sm:mx-0 px-4 sm:px-0 py-4 mb-8">
-            <div className="relative flex justify-start sm:justify-center items-center gap-2 overflow-x-auto pb-2 -mb-2 no-scrollbar">
+            <div className="relative flex justify-center items-center flex-wrap gap-2">
                 {filters.map((filter, index) => (
-                    <button 
+                    <button
                         key={filter}
+                        ref={(el) => {
+                            if (el && !tabRefs.includes(el)) {
+                                setTabRefs(prev => {
+                                    const newRefs = [...prev];
+                                    newRefs[index] = el;
+                                    return newRefs;
+                                });
+                            }
+                        }}
                         onClick={() => handleFilterChange(filter, index)}
                         className={cn(
                             "relative shrink-0 px-4 py-2 text-sm font-medium rounded-full transition-colors cursor-target hover:text-white",
@@ -146,15 +156,15 @@ const GalleryPage = () => {
                     </button>
                 ))}
                 <AnimatePresence>
-                {activeFilter && (
+                {tabRefs[activeTabIndex] && (
                     <motion.div 
                         className="absolute bottom-0 h-0.5 bg-gradient-to-r from-purple-600 to-violet-500"
                         layoutId="active-filter-underline"
                         initial={false}
                         transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                         style={{
-                            width: document.querySelector(`button:nth-child(${activeTabIndex + 1})`)?.clientWidth,
-                            left: document.querySelector(`button:nth-child(${activeTabIndex + 1})`)?.offsetLeft
+                            width: tabRefs[activeTabIndex]?.clientWidth,
+                            left: tabRefs[activeTabIndex]?.offsetLeft
                         }}
                     />
                 )}
