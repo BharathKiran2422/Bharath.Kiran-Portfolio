@@ -106,6 +106,7 @@ const BlogPage = () => {
     const regularPosts = blogPosts.filter(p => !p.featured);
 
     return (
+        /*
         <div className="container mx-auto px-4 md:px-6 py-16 md:py-24">
             <div className="text-center mb-12">
                 <p className="font-headline text-lg font-medium text-primary">My Blog</p>
@@ -118,7 +119,7 @@ const BlogPage = () => {
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-                {/* Main Content */}
+                
                 <div className="lg:col-span-8">
                     {featuredPost && (
                         <motion.div variants={itemVariants} className="mb-12">
@@ -211,7 +212,7 @@ const BlogPage = () => {
                     </div>
                 </div>
 
-                {/* Sidebar */}
+                
                 <aside className="lg:col-span-4 space-y-8">
                     <Card className="bg-white/5 border-white/10">
                         <CardHeader><h3 className="font-headline text-xl font-bold text-white">Categories</h3></CardHeader>
@@ -255,6 +256,8 @@ const BlogPage = () => {
                 </aside>
             </div>
         </div>
+        */
+       null
     );
 };
 

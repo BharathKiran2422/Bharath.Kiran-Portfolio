@@ -13,7 +13,7 @@ const navLinks = [
   { href: "/portfolio", label: "Portfolio", ariaLabel: "Portfolio" },
   { href: "/resume", label: "Resume", ariaLabel: "Resume" },
   { href: "/about", label: "About", ariaLabel: "About" },
-  { href: "/blog", label: "Blog", ariaLabel: "Blog" },
+  // { href: "/blog", label: "Blog", ariaLabel: "Blog" },
   { href: "/gallery", label: "Gallery", ariaLabel: "Gallery" },
   { href: "/contact", label: "Contact", ariaLabel: "Contact" },
 ]
