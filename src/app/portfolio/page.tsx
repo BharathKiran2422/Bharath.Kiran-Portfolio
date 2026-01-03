@@ -164,7 +164,7 @@ const PortfolioPage = () => {
                 <motion.div
                     key={project.title}
                     variants={itemVariants}
-                    className={`group relative rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/50 hover:-translate-y-2 cursor-target shadow-lg hover:shadow-primary/20
+                    className={`group relative flex flex-col rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/50 hover:-translate-y-2 cursor-target shadow-lg hover:shadow-primary/20
                         ${project.featured ? 'md:col-span-2' : ''}
                     `}
                 >
@@ -178,18 +178,18 @@ const PortfolioPage = () => {
                            data-ai-hint={project.image.hint}
                            className="w-full h-auto object-cover"
                        />
-                       <div className="p-6">
+                       <div className="p-6 flex flex-col flex-grow">
                            <div className="flex justify-between items-start">
                              <h3 className="text-xl font-bold font-headline text-white mb-2">{project.title}</h3>
                              <Badge variant="secondary" className={`bg-green-500/10 text-green-400 border-green-500/20 whitespace-nowrap`}>{project.status}</Badge>
                            </div>
-                           <p className="text-muted-foreground mb-4 h-20">{project.description}</p>
+                           <p className="text-muted-foreground mb-4 flex-grow">{project.description}</p>
                            <div className="mb-4 flex flex-wrap gap-2">
                                {project.techStack.map(tech => (
                                    <Badge key={tech} variant="secondary" className="bg-primary/10 text-primary border-primary/20">{tech}</Badge>
                                ))}
                            </div>
-                           <div className="flex items-center gap-4">
+                           <div className="flex items-center gap-4 mt-auto">
                                {project.links.live && (
                                    <Button size="sm" asChild className="button-gradient-primary cursor-target hover:scale-105 transition-transform">
                                        <Link href={project.links.live} target="_blank">
