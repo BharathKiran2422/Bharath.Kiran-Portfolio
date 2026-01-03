@@ -118,7 +118,7 @@ export default function Inbox({ onLogout }: InboxProps) {
   const unreadCount = useMemo(() => messages.filter(msg => !msg.read).length, [messages]);
 
   return (
-    <div className="container mx-auto px-4 md:px-6 py-16 md:py-24">
+    <div className="container mx-auto px-4 md:px-6 py-16 md:py-24 min-h-[calc(100vh-160px)]">
       <div className="flex justify-between items-center mb-8">
         <div className="flex items-center gap-3">
           <InboxIcon className="h-8 w-8 text-primary" />
@@ -189,7 +189,7 @@ export default function Inbox({ onLogout }: InboxProps) {
                     </p>
                   </TableCell>
                   <TableCell className="hidden md:table-cell text-muted-foreground text-xs">
-                    {format(parseISO(message.createdAt), "PPp")}
+                    {message.createdAt ? format(parseISO(message.createdAt), "PPp") : ''}
                   </TableCell>
                   <TableCell className="text-right">
                      <DropdownMenu>
@@ -230,7 +230,7 @@ export default function Inbox({ onLogout }: InboxProps) {
                     <DialogTitle className="font-headline text-2xl text-white">{selectedMessage?.subject}</DialogTitle>
                     <DialogDescription>
                         From: {selectedMessage?.name} &lt;{selectedMessage?.email}&gt;<br/>
-                        Received: {selectedMessage && format(parseISO(selectedMessage.createdAt), "PPPPp")}
+                        Received: {selectedMessage && selectedMessage.createdAt ? format(parseISO(selectedMessage.createdAt), "PPPPp") : ''}
                     </DialogDescription>
                 </DialogHeader>
                 <div className="py-4 whitespace-pre-wrap text-muted-foreground">
