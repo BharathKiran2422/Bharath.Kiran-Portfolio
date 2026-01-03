@@ -69,6 +69,7 @@ const projectsData: Project[] = [
     status: 'Completed',
     category: ['UI/UX', 'Web Apps'],
   },
+  /*
   {
     title: "RideTogether - AI Ride-Sharing App",
     description: "Community-based carpooling platform with AI-powered ride matching, wallet integration, and carbon footprint tracking for sustainable transportation.",
@@ -105,6 +106,7 @@ const projectsData: Project[] = [
     status: 'Completed',
     category: ['Web Apps', 'UI/UX'],
   },
+  */
 ];
 
 const filters = ['All', 'Web Apps', 'Full-Stack', 'UI/UX', 'Data Science'];
