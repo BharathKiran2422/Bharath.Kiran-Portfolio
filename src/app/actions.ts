@@ -19,23 +19,19 @@ type FormState = {
     subject?: string[];
     message?: string[];
   };
+  success: boolean;
 };
 
 export async function submitContactForm(
-  prevState: FormState,
-  formData: FormData
+  data: z.infer<typeof contactSchema>
 ): Promise<FormState> {
-  const parsed = contactSchema.safeParse({
-    name: formData.get('name'),
-    email: formData.get('email'),
-    subject: formData.get('subject'),
-    message: formData.get('message'),
-  });
+  const parsed = contactSchema.safeParse(data);
 
   if (!parsed.success) {
     return {
       message: 'Failed to save message. Please check your input.',
       errors: parsed.error.flatten().fieldErrors,
+      success: false,
     };
   }
 
@@ -46,11 +42,11 @@ export async function submitContactForm(
       read: false,
     });
 
-    return { message: 'Your message has been sent successfully!' };
+    return { message: 'Your message has been sent successfully!', success: true };
   } catch (e: any) {
     console.error('Failed to save message to Firestore:', e);
     const errorMessage = e.message || 'An unknown error occurred.';
-    return { message: `Error saving message: ${errorMessage}. Please try again later.` };
+    return { message: `Error saving message: ${errorMessage}. Please try again later.`, success: false };
   }
 }
 

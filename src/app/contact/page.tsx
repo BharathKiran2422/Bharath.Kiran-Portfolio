@@ -2,13 +2,12 @@
 'use client';
 
 import React from 'react';
-import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion } from 'framer-motion';
-import { AtSign, Linkedin, MapPin, Paperclip, Phone, Send, User, ChevronDown, HelpCircle, Briefcase, MessageSquare, Users, Code, Info, Github } from 'lucide-react';
+import { AtSign, Linkedin, MapPin, Phone, Send, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -74,30 +73,30 @@ function SubmitButton() {
 
 export default function ContactPage() {
     const { toast } = useToast();
-    const [state, formAction] = useActionState(submitContactForm, { message: '' });
     
     const form = useForm<ContactFormValues>({
         resolver: zodResolver(contactSchema),
         defaultValues: { name: '', email: '', subject: '', message: '' },
     });
-    
-    React.useEffect(() => {
-        if (state.message) {
-            if (state.errors) {
-                toast({
-                    variant: "destructive",
-                    title: "Oops! Something went wrong.",
-                    description: state.message,
-                });
-            } else {
-                toast({
-                    title: "Success!",
-                    description: state.message,
-                });
-                form.reset();
-            }
+
+    const onSubmit = async (data: ContactFormValues) => {
+        const result = await submitContactForm(data);
+
+        if (result.success) {
+            toast({
+                title: "Success!",
+                description: result.message,
+            });
+            form.reset();
+        } else {
+             toast({
+                variant: "destructive",
+                title: "Oops! Something went wrong.",
+                description: result.message,
+            });
         }
-    }, [state, toast, form]);
+    };
+    
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -135,7 +134,7 @@ export default function ContactPage() {
                     </div>
 
                     <Form {...form}>
-                        <form action={formAction} className="space-y-6">
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                              <FormField
                                 control={form.control}
                                 name="name"
@@ -168,7 +167,7 @@ export default function ContactPage() {
                                 render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>Subject</FormLabel>
-                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
                                     <FormControl>
                                         <SelectTrigger className="cursor-target">
                                         <SelectValue placeholder="Select a subject" />
@@ -258,4 +257,4 @@ export default function ContactPage() {
         </div>
     );
 
-    
+}
