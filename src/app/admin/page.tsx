@@ -98,5 +98,9 @@ export default function AdminPage() {
     );
   }
 
-  return <Inbox onLogout={handleLogout} />;
+  return (
+    <div className="min-h-[calc(100vh-160px)]">
+      <Inbox onLogout={handleLogout} />
+    </div>
+  );
 }
