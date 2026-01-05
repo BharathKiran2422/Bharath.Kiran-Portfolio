@@ -7,6 +7,7 @@ import { StaggeredMenu } from "./StaggeredMenu"
 import Link from "next/link"
 import { Github, Linkedin, Mountain, Send } from "lucide-react"
 import { SiCodechef, SiHackerrank, SiLeetcode } from "react-icons/si"
+import { usePathname } from "next/navigation"
 
 const navLinks = [
   { href: "/", label: "Home", ariaLabel: "Home" },
@@ -31,6 +32,7 @@ const socialItems = [
 export default function Header() {
   const [isClient, setIsClient] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     setIsClient(true);
@@ -47,14 +49,17 @@ export default function Header() {
     };
   }, []);
   
-  const menuItems = navLinks.map(navLink => ({
-      ...navLink,
-      linkComponent: (
-        <Link href={navLink.href} className="sm-panel-item cursor-target" aria-label={navLink.ariaLabel}>
-            <span className="sm-panel-itemLabel">{navLink.label}</span>
-        </Link>
-      )
-  }));
+  const menuItems = navLinks.map(navLink => {
+    const isActive = pathname === navLink.href;
+    return {
+        ...navLink,
+        linkComponent: (
+          <Link href={navLink.href} className={`sm-panel-item cursor-target ${isActive ? 'text-primary' : ''}`} aria-label={navLink.ariaLabel}>
+              <span className="sm-panel-itemLabel">{navLink.label}</span>
+          </Link>
+        )
+    }
+  });
     
   return (
     <>
