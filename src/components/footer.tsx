@@ -3,12 +3,12 @@ import { Github, Linkedin, Mountain, Send } from 'lucide-react';
 import { SiLeetcode, SiCodechef, SiHackerrank } from 'react-icons/si';
 
 const socialLinks = [
-  { href: "https://github.com/BharathKiran2422", icon: <Github className="h-5 w-5" />, ariaLabel: "GitHub" },
-  { href: "https://www.linkedin.com/in/bharath-kiran-obilisetty-289b1022b", icon: <Linkedin className="h-5 w-5" />, ariaLabel: "LinkedIn" },
-  { href: "https://www.hackerrank.com/profile/bharathkiran2422", icon: <SiHackerrank className="h-5 w-5" />, ariaLabel: "HackerRank" },
-  { href: "https://leetcode.com/BharathKiran2422/", icon: <SiLeetcode className="h-5 w-5" />, ariaLabel: "LeetCode" },
-  { href: "https://www.codechef.com/users/bharath_kiran", icon: <SiCodechef className="h-5 w-5" />, ariaLabel: "CodeChef" },
-  { href: "mailto:bharathkiranobilisetty@gmail.com", icon: <Send className="h-5 w-5" />, ariaLabel: "Email" },
+  { href: "https://github.com/BharathKiran2422", icon: <Github className="h-5 w-5" />, ariaLabel: "GitHub", isExternal: true },
+  { href: "https://www.linkedin.com/in/bharath-kiran-obilisetty-289b1022b", icon: <Linkedin className="h-5 w-5" />, ariaLabel: "LinkedIn", isExternal: true },
+  { href: "https://www.hackerrank.com/profile/bharathkiran2422", icon: <SiHackerrank className="h-5 w-5" />, ariaLabel: "HackerRank", isExternal: true },
+  { href: "https://leetcode.com/BharathKiran2422/", icon: <SiLeetcode className="h-5 w-5" />, ariaLabel: "LeetCode", isExternal: true },
+  { href: "https://www.codechef.com/users/bharath_kiran", icon: <SiCodechef className="h-5 w-5" />, ariaLabel: "CodeChef", isExternal: true },
+  { href: "/contact", icon: <Send className="h-5 w-5" />, ariaLabel: "Contact", isExternal: false },
 ]
 
 
@@ -28,16 +28,16 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-4">
              {socialLinks.map((link) => (
-                <a 
+                <Link 
                   key={link.ariaLabel}
                   href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={link.isExternal ? "_blank" : undefined}
+                  rel={link.isExternal ? "noopener noreferrer" : undefined}
                   className="text-muted-foreground hover:text-primary transition-colors cursor-target"
                   aria-label={link.ariaLabel}
                 >
                   {link.icon}
-                </a>
+                </Link>
               ))}
           </div>
         </div>
