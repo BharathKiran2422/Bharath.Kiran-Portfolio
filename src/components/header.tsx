@@ -14,7 +14,6 @@ const navLinks = [
   { href: "/portfolio", label: "Portfolio", ariaLabel: "Portfolio" },
   { href: "/resume", label: "Resume", ariaLabel: "Resume" },
   { href: "/about", label: "About", ariaLabel: "About" },
-  // { href: "/blog", label: "Blog", ariaLabel: "Blog" },
   { href: "/gallery", label: "Gallery", ariaLabel: "Gallery" },
   { href: "/contact", label: "Contact", ariaLabel: "Contact" },
 ]
@@ -54,8 +53,10 @@ export default function Header() {
     return {
         ...navLink,
         linkComponent: (
-          <Link href={navLink.href} className={`sm-panel-item cursor-target ${isActive ? 'text-primary' : ''}`} aria-label={navLink.ariaLabel}>
-              <span className="sm-panel-itemLabel">{navLink.label}</span>
+          <Link href={navLink.href} className="sm-panel-item cursor-target" aria-label={navLink.ariaLabel}>
+              <span className="sm-panel-itemLabel" style={isActive ? { color: 'hsl(var(--primary))' } : {}}>
+                {navLink.label}
+              </span>
           </Link>
         )
     }
