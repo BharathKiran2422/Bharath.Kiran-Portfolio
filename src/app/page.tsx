@@ -23,8 +23,8 @@ const socialLinks = [
   { href: "https://github.com/BharathKiran2422", icon: <Github className="h-7 w-7" />, ariaLabel: "GitHub", isExternal: true },
   { href: "https://www.linkedin.com/in/bharath-kiran-obilisetty-289b1022b", icon: <Linkedin className="h-7 w-7" />, ariaLabel: "LinkedIn", isExternal: true },
   { href: "https://www.hackerrank.com/profile/bharathkiran2422", icon: <SiHackerrank className="h-7 w-7" />, ariaLabel: "HackerRank", isExternal: true },
-  { href: "https://leetcode.com/BharathKiran2422/", icon: <SiLeetcode className="h-7 w-7" />, ariaLabel: "LeetCode", isExternal: true },
-  { href: "https://www.codechef.com/users/bharath_kiran", icon: <SiCodechef className="h-7 w-7" />, ariaLabel: "CodeChef", isExternal: true },
+  { href: "https://leetcode.com/u/Bharath_Kiran/", icon: <SiLeetcode className="h-7 w-7" />, ariaLabel: "LeetCode", isExternal: true },
+  { href: "https://www.codechef.com/users/bharath2422", icon: <SiCodechef className="h-7 w-7" />, ariaLabel: "CodeChef", isExternal: true },
   { href: "/contact", icon: <Send className="h-7 w-7" />, ariaLabel: "Contact", isExternal: false },
 ]
 
@@ -253,3 +253,5 @@ export default function Home() {
     </>
   );
 }
+
+    

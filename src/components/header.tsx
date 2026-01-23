@@ -22,8 +22,8 @@ const socialItems = [
   { label: 'GitHub', link: "https://github.com/BharathKiran2422", icon: <Github /> },
   { label: 'LinkedIn', link: "https://www.linkedin.com/in/bharath-kiran-obilisetty-289b1022b", icon: <Linkedin /> },
   { label: 'HackerRank', link: "https://www.hackerrank.com/profile/bharathkiran2422", icon: <SiHackerrank /> },
-  { label: 'LeetCode', link: "https://leetcode.com/BharathKiran2422/", icon: <SiLeetcode /> },
-  { label: 'CodeChef', link: "https://www.codechef.com/users/bharath_kiran", icon: <SiCodechef /> },
+  { label: 'LeetCode', link: "https://leetcode.com/u/Bharath_Kiran/", icon: <SiLeetcode /> },
+  { label: 'CodeChef', link: "https://www.codechef.com/users/bharath2422", icon: <SiCodechef /> },
   { label: 'Contact', link: "/contact", icon: <Send /> },
 ]
 
@@ -88,3 +88,5 @@ export default function Header() {
     </>
   );
 }
+
+    
