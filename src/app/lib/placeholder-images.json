@@ -14,6 +14,13 @@
     "alt": "Screenshot of a budget_buddy website interface",
     "hint": "budget_buddy website"
   },
+  "puck_man": {
+    "src": "/puckman.png",
+    "width": 800,
+    "height": 600,
+    "alt": "Screenshot of a PuckMan/PacMan game",
+    "hint": "puck_man_game"
+  },
   "gender_age_prediction": {
     "src": "/gender_age_prediction.png",
     "width": 800,

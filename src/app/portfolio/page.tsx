@@ -27,7 +27,7 @@ type Project = {
     caseStudy?: string;
   };
   status: 'Completed' | 'In Progress';
-  category: ('Web Apps' | 'Full-Stack' | 'UI/UX' | 'Data Science')[];
+  category: ('Web Apps' | 'Full-Stack' | 'UI/UX' | 'Data Science' | 'Java' | 'Game Dev')[];
   featured?: boolean;
 };
 
@@ -50,6 +50,15 @@ const projectsData: Project[] = [
     links: { live: 'https://budget-buddy-bk.vercel.app', github: 'https://github.com/BharathKiran2422/Budget-Buddy', caseStudy: '#' },
     status: 'Completed',
     category: ['Web Apps', 'Full-Stack', 'Data Science'],
+  },
+  {
+    title: "PuckMan — Java AWT/Swing Pac-Man Clone",
+    description: "Java AWT/Swing Pac-Man clone with tile-based maps, ghost AI, collision detection, and scoring system.",
+    image: placeholderImages.puck_man,
+    techStack: ["Java 8+", "AWT", "Swing"],
+    links: { github: 'https://github.com/BharathKiran2422/PuckMan', caseStudy: '#' },
+    status: 'Completed',
+    category: ['Java', 'Game Dev'],
   },
   {
     title: "Gender_Age_Predition",
